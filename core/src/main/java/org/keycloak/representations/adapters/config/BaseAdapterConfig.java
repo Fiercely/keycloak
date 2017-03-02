@@ -58,7 +58,7 @@ public class BaseAdapterConfig extends BaseRealmConfig {
     @JsonProperty("public-client")
     protected boolean publicClient;
     @JsonProperty("credentials")
-    protected Map<String, Object> credentials = new HashMap<>();
+    protected Map<String, Object> credentials = new HashMap<String, Object>();
 
 
     public boolean isUseResourceRoleMappings() {

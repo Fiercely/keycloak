@@ -32,7 +32,7 @@ public class StringOrArrayDeserializer extends JsonDeserializer<Object> {
     public Object deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode jsonNode = jsonParser.readValueAsTree();
         if (jsonNode.isArray()) {
-            ArrayList<String> a = new ArrayList<>(1);
+            ArrayList<String> a = new ArrayList<String>(1);
             Iterator<JsonNode> itr = jsonNode.iterator();
             while (itr.hasNext()) {
                 a.add(itr.next().textValue());

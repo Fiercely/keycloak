@@ -31,7 +31,7 @@ public class ConcurrentMultivaluedHashMap<K, V> extends ConcurrentHashMap<K, Lis
 {
    public void putSingle(K key, V value)
    {
-      List<V> list = new CopyOnWriteArrayList<>();
+      List<V> list = new CopyOnWriteArrayList<V>();
       list.add(value);
       put(key, list);
    }

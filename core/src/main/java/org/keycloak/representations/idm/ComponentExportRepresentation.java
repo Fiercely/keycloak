@@ -28,8 +28,8 @@ public class ComponentExportRepresentation {
     private String name;
     private String providerId;
     private String subType;
-    private MultivaluedHashMap<String, ComponentExportRepresentation> subComponents = new MultivaluedHashMap<>();
-    private MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
+    private MultivaluedHashMap<String, ComponentExportRepresentation> subComponents = new MultivaluedHashMap<String, ComponentExportRepresentation>();
+    private MultivaluedHashMap<String, String> config = new MultivaluedHashMap<String, String>();
 
     public String getId() {
         return id;
