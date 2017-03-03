@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class CredentialAddHandler extends AbstractAddStepHandler {
 
-    protected Collection<AttributeDefinition> attributes = new LinkedList<>();
+    protected Collection<AttributeDefinition> attributes = new LinkedList<AttributeDefinition>();
 
     public CredentialAddHandler(AttributeDefinition... attrs) {
         for (AttributeDefinition attr : attrs) {

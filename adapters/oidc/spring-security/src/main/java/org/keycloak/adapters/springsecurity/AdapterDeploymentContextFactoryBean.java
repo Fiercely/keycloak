@@ -29,7 +29,7 @@ import org.springframework.core.io.Resource;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Objects;
+import com.google.common.base.Objects;
 
 /**
  * {@link FactoryBean} that creates an {@link AdapterDeploymentContext} given a {@link Resource} defining the Keycloak

@@ -67,7 +67,7 @@ public class IdentityProviderDefinition extends SimpleResourceDefinition {
 
     static final SimpleAttributeDefinition[] ALL_ATTRIBUTES = {SIGNATURES_REQUIRED, SIGNATURE_ALGORITHM, SIGNATURE_CANONICALIZATION_METHOD, SINGLE_SIGN_ON, SINGLE_LOGOUT};
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ALL_ATTRIBUTES) {

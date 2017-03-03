@@ -62,7 +62,7 @@ public class SamlDescriptorIDPKeysExtractor {
     }
 
     public MultivaluedHashMap<String, KeyInfo> parse(InputStream stream) throws ParsingException {
-        MultivaluedHashMap<String, KeyInfo> res = new MultivaluedHashMap<>();
+        MultivaluedHashMap<String, KeyInfo> res = new MultivaluedHashMap<String, KeyInfo>();
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

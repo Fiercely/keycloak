@@ -31,8 +31,8 @@ import java.util.Set;
  * @version $Revision: 1 $
  */
 public class SamlPrincipal implements Serializable, Principal {
-    private MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<>();
-    private MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<>();
+    private MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<String, String>();
+    private MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<String, String>();
     private String name;
     private String samlSubject;
     private String nameIDFormat;

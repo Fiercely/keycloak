@@ -192,7 +192,7 @@ public class DefaultSamlDeployment implements SamlDeployment {
         private final CompositeKeyLocator signatureValidationKeyLocator = new CompositeKeyLocator();
         private SingleSignOnService singleSignOnService;
         private SingleLogoutService singleLogoutService;
-        private final List<PublicKey> signatureValidationKeys = new LinkedList<>();
+        private final List<PublicKey> signatureValidationKeys = new LinkedList<PublicKey>();
         private int minTimeBetweenDescriptorRequests;
         private HttpClient client;
 

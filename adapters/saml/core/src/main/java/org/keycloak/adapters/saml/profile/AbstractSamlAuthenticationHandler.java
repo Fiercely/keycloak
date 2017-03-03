@@ -384,9 +384,9 @@ public abstract class AbstractSamlAuthenticationHandler implements SamlAuthentic
         NameIDType subjectNameID = (NameIDType) subType.getBaseID();
         String principalName = subjectNameID.getValue();
 
-        final Set<String> roles = new HashSet<>();
-        MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<>();
-        MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<>();
+        final Set<String> roles = new HashSet<String>();
+        MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<String, String>();
+        MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<String, String>();
 
         Set<StatementAbstractType> statements = assertion.getStatements();
         for (StatementAbstractType statement : statements) {
@@ -470,7 +470,7 @@ public abstract class AbstractSamlAuthenticationHandler implements SamlAuthentic
           && responseType.getStatus() != null
           && responseType.getStatus().getStatusCode() != null
           && responseType.getStatus().getStatusCode().getValue() != null
-          && Objects.equals(responseType.getStatus().getStatusCode().getValue().toString(), JBossSAMLURIConstants.STATUS_SUCCESS.get());
+          && Objects.equal(responseType.getStatus().getStatusCode().getValue().toString(), JBossSAMLURIConstants.STATUS_SUCCESS.get());
     }
 
     private String getAttributeValue(Object attrValue) {

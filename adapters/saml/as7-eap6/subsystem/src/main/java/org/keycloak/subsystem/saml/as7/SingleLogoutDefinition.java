@@ -70,7 +70,7 @@ abstract class SingleLogoutDefinition {
     static final SimpleAttributeDefinition[] ATTRIBUTES = {VALIDATE_REQUEST_SIGNATURE, VALIDATE_RESPONSE_SIGNATURE,
             SIGN_REQUEST, SIGN_RESPONSE, REQUEST_BINDING, RESPONSE_BINDING, POST_BINDING_URL, REDIRECT_BINDING_URL};
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ATTRIBUTES) {

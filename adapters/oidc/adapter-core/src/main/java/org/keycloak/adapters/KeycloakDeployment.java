@@ -60,7 +60,7 @@ public class KeycloakDeployment {
     protected boolean autodetectBearerOnly;
     protected boolean enableBasicAuth;
     protected boolean publicClient;
-    protected Map<String, Object> resourceCredentials = new HashMap<>();
+    protected Map<String, Object> resourceCredentials = new HashMap<String, Object>();
     protected ClientCredentialsProvider clientAuthenticator;
     protected HttpClient client;
 

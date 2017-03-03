@@ -117,7 +117,7 @@ public class KeycloakAdapterConfigDeploymentProcessor implements DeploymentUnitP
 
         List<ParamValueMetaData> contextParams = webMetaData.getContextParams();
         if (contextParams == null) {
-            contextParams = new ArrayList<>();
+            contextParams = new ArrayList<String, SimpleAttributeDefinition>();
         }
 
         ParamValueMetaData param = new ParamValueMetaData();

@@ -257,7 +257,7 @@ public abstract class AbstractPolicyEnforcer {
     }
 
     private Set<String> getRequiredScopes(PathConfig pathConfig, Request request) {
-        Set<String> requiredScopes = new HashSet<>();
+        Set<String> requiredScopes = new HashSet<String>();
 
         requiredScopes.addAll(pathConfig.getScopes());
 

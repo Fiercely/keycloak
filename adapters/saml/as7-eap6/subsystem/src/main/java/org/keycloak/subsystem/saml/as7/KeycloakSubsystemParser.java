@@ -197,7 +197,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
 
     void readKeys(List<ModelNode> list, XMLExtendedStreamReader reader, PathAddress parentAddr) throws XMLStreamException {
         ParseUtils.requireNoAttributes(reader);
-        List<ModelNode> keyList = new LinkedList<>();
+        List<ModelNode> keyList = new LinkedList<ModelNode>();
         while (reader.hasNext() && nextTag(reader) != END_ELEMENT) {
             String tagName = reader.getLocalName();
             if (!Constants.XML.KEY.equals(tagName)) {

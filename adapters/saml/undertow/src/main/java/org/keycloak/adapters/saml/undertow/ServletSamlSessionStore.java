@@ -109,7 +109,7 @@ public class ServletSamlSessionStore implements SamlSessionStore {
     public void logoutByPrincipal(String principal) {
         Set<String> sessions = idMapper.getUserSessions(principal);
         if (sessions != null) {
-            List<String> ids = new LinkedList<>();
+            List<String> ids = new LinkedList<String>();
             ids.addAll(sessions);
             logoutSessionIds(ids);
             for (String id : ids) {
@@ -122,7 +122,7 @@ public class ServletSamlSessionStore implements SamlSessionStore {
     @Override
     public void logoutBySsoId(List<String> ssoIds) {
         if (ssoIds == null) return;
-        List<String> sessionIds = new LinkedList<>();
+        List<String> sessionIds = new LinkedList<String>();
         for (String id : ssoIds) {
              String sessionId = idMapper.getSessionFromSSO(id);
              if (sessionId != null) {

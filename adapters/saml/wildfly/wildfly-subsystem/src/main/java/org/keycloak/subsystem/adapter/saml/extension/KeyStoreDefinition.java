@@ -59,7 +59,7 @@ abstract class KeyStoreDefinition {
             KeyStoreCertificateDefinition.CERTIFICATE_ALIAS
     };
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ATTRIBUTES) {

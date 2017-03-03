@@ -19,7 +19,7 @@ package org.keycloak.representations.idm.authorization;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import com.google.common.base.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -171,10 +171,10 @@ public class ResourceRepresentation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResourceRepresentation scope = (ResourceRepresentation) o;
-        return Objects.equals(getName(), scope.getName());
+        return Objects.equal(getName(), scope.getName());
     }
 
     public int hashCode() {
-        return Objects.hash(getName());
+        return Objects.hashCode(getName());
     }
 }

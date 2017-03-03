@@ -212,7 +212,7 @@ public class FilterSessionStore implements AdapterSessionStore {
                         return super.getParameterValues(name);
                     }
                     String[] values = request.getParameterValues(name);
-                    List<String> list = new LinkedList<>();
+                    List<String> list = new LinkedList<String>();
                     if (values != null) {
                         for (String val : values) list.add(val);
                     }
@@ -228,7 +228,7 @@ public class FilterSessionStore implements AdapterSessionStore {
                     if (formParams == null) {
                         return super.getParameterNames();
                     }
-                    Set<String> names = new HashSet<>();
+                    Set<String> names = new HashSet<String>();
                     Enumeration<String> qnames = super.getParameterNames();
                     while (qnames.hasMoreElements()) names.add(qnames.nextElement());
                     names.addAll(formParams.keySet());
@@ -243,7 +243,7 @@ public class FilterSessionStore implements AdapterSessionStore {
                     if (formParams == null) {
                         return super.getParameterMap();
                     }
-                    Map<String, String[]> map = new HashMap<>();
+                    Map<String, String[]> map = new HashMap<String, String[]>();
                     Enumeration<String> names = getParameterNames();
                     while (names.hasMoreElements()) {
                         String name = names.nextElement();
@@ -375,7 +375,7 @@ public class FilterSessionStore implements AdapterSessionStore {
         HttpSession session = request.getSession(true);
         session.setAttribute(REDIRECT_URI, facade.getRequest().getURI());
         session.setAttribute(SAVED_METHOD, request.getMethod());
-        MultivaluedHashMap<String, String> headers = new MultivaluedHashMap<>();
+        MultivaluedHashMap<String, String> headers = new MultivaluedHashMap<String, String>();
         Enumeration<String> names = request.getHeaderNames();
         while (names.hasMoreElements()) {
             String name = names.nextElement();

@@ -64,7 +64,7 @@ public class SamlDescriptorPublicKeyLocator implements KeyLocator, Iterable<Publ
      */
     private final String descriptorUrl;
 
-    private final Map<String, PublicKey> publicKeyCache = new ConcurrentHashMap<>();
+    private final Map<String, PublicKey> publicKeyCache = new ConcurrentHashMap<String, PublicKey>();
 
     private final HttpClient client;
 

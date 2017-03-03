@@ -18,7 +18,7 @@ package org.keycloak.representations.idm.authorization;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+import com.google.common.base.Objects;
 
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
@@ -94,11 +94,11 @@ public class PolicyRepresentation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final PolicyRepresentation policy = (PolicyRepresentation) o;
-        return Objects.equals(getId(), policy.getId());
+        return Objects.equal(getId(), policy.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hashCode(getId());
     }
 }

@@ -116,7 +116,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     public void readCredential(XMLExtendedStreamReader reader, PathAddress parent, List<ModelNode> credentialsToAdd) throws XMLStreamException {
         String name = readNameAttribute(reader);
 
-        Map<String, String> values = new HashMap<>();
+        Map<String, String> values = new HashMap<String, String>();
         String textValue = null;
         while (reader.hasNext()) {
             int next = reader.next();
@@ -225,7 +225,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     }
 
     private void writeCredentials(XMLExtendedStreamWriter writer, ModelNode credentials) throws XMLStreamException {
-        Map<String, Object> parsed = new LinkedHashMap<>();
+        Map<String, Object> parsed = new LinkedHashMap<String, Object>();
         for (Property credential : credentials.asPropertyList()) {
             String credName = credential.getName();
             String credValue = credential.getValue().get(CredentialDefinition.VALUE.getName()).asString();
@@ -237,7 +237,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
 
                 Map<String, String> currentProviderMap = (Map<String, String>) parsed.get(provider);
                 if (currentProviderMap == null) {
-                    currentProviderMap = new LinkedHashMap<>();
+                    currentProviderMap = new LinkedHashMap<String, Object>();
                     parsed.put(provider, currentProviderMap);
                 }
                 currentProviderMap.put(propKey, credValue);
