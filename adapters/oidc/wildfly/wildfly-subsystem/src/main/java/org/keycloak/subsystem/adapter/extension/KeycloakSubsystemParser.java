@@ -237,7 +237,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
 
                 Map<String, String> currentProviderMap = (Map<String, String>) parsed.get(provider);
                 if (currentProviderMap == null) {
-                    currentProviderMap = new LinkedHashMap<String, Object>();
+                    currentProviderMap = new LinkedHashMap<String, String>();
                     parsed.put(provider, currentProviderMap);
                 }
                 currentProviderMap.put(propKey, credValue);

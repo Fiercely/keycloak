@@ -72,6 +72,7 @@ import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
 import java.util.*;
+import com.google.common.base.Objects;
 import org.keycloak.dom.saml.v2.SAML2Object;
 import org.keycloak.dom.saml.v2.protocol.ExtensionsType;
 import org.keycloak.rotation.KeyLocator;

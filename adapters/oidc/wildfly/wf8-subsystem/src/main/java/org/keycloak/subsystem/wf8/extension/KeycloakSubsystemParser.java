@@ -239,7 +239,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     }
 
     private void writeCredentials(XMLExtendedStreamWriter writer, ModelNode credentials) throws XMLStreamException {
-        Map<String, Object> parsed = new LinkedHashMap<String, Object>());
+        Map<String, Object> parsed = new LinkedHashMap<String, Object>();
         for (Property credential : credentials.asPropertyList()) {
             String credName = credential.getName();
             String credValue = credential.getValue().get(CredentialDefinition.VALUE.getName()).asString();
@@ -251,7 +251,7 @@ class KeycloakSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
 
                 Map<String, String> currentProviderMap = (Map<String, String>) parsed.get(provider);
                 if (currentProviderMap == null) {
-                    currentProviderMap = new LinkedHashMap<String, Object>();
+                    currentProviderMap = new LinkedHashMap<String, String>();
                     parsed.put(provider, currentProviderMap);
                 }
                 currentProviderMap.put(propKey, credValue);

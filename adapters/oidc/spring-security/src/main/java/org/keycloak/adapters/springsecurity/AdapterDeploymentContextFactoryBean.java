@@ -30,6 +30,7 @@ import org.springframework.core.io.Resource;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 
 /**
  * {@link FactoryBean} that creates an {@link AdapterDeploymentContext} given a {@link Resource} defining the Keycloak
@@ -46,12 +47,12 @@ public class AdapterDeploymentContextFactoryBean
     private AdapterDeploymentContext adapterDeploymentContext;
 
     public AdapterDeploymentContextFactoryBean(Resource keycloakConfigFileResource) {
-        this.keycloakConfigFileResource = Objects.requireNonNull(keycloakConfigFileResource);
+        this.keycloakConfigFileResource = Preconditions.checkNotNull(keycloakConfigFileResource);
         this.keycloakConfigResolver = null;
     }
 
     public AdapterDeploymentContextFactoryBean(KeycloakConfigResolver keycloakConfigResolver) {
-        this.keycloakConfigResolver = Objects.requireNonNull(keycloakConfigResolver);
+        this.keycloakConfigResolver = Preconditions.checkNotNull(keycloakConfigResolver);
         this.keycloakConfigFileResource = null;
     }
 
