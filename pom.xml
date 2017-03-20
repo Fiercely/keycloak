@@ -144,9 +144,9 @@
 
     <distributionManagement>
         <repository>
-            <id>jboss-releases-repository</id>
-            <name>JBoss Releases Repository</name>
-            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+          <id>fiercely-maven-releases</id>
+          <name>Fiercely Nexus Maven Repository</name>
+          <url>http://ha-proxy.qa-server.a8628d5f.svc.dockerapp.io/nexus/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
