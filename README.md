@@ -1,3 +1,25 @@
+JaaS Connector
+=============
+After building the project send each generated artifact with the `pt.fiercely` group id like the example below:
+
+```
+mvn deploy:deploy-file \
+   -Dfile=adapters/oidc/adapter-core/target/keycloak-adapter-core-2.5.1.Final.jar \
+   -DgroupId=pt.fiercely \
+   -DartifactId=keycloak-adapter-core \
+   -Dversion=2.5.1.Final \
+   -Dpackaging=jar \
+   -DgeneratePom=true \
+   -Durl='http://ha-proxy.qa-server.a8628d5f.svc.dockerapp.io/nexus/repository/maven-releases/' \
+   -DrepositoryId=fiercely-maven-releases \
+   -X
+```
+
+The necessary JARs are:
+  - `common/target/keycloak-common-2.5.1.Final.jar`
+  - `core/target/keycloak-core-2.5.1.Final.jar`
+  - `adapters/oidc/adapter-core/target/keycloak-adapter-core-2.5.1.Final.jar`
+
 Keycloak
 ========
 
