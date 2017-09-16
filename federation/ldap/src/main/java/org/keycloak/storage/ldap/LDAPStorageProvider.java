@@ -358,7 +358,7 @@ public class LDAPStorageProvider implements UserStorageProvider,
 
         return searchResults;
     }
-
+    
     @Override
     public List<UserModel> getGroupMembers(RealmModel realm, GroupModel group) {
         return getGroupMembers(realm, group, 0, Integer.MAX_VALUE - 1);
@@ -377,6 +377,17 @@ public class LDAPStorageProvider implements UserStorageProvider,
                 return users;
             }
         }
+        return Collections.emptyList();
+    }
+    
+    @Override
+    public List<UserModel> getRoleMembers(RealmModel realm, RoleModel role) {
+        return getRoleMembers(realm, role, 0, Integer.MAX_VALUE - 1);
+    }
+
+    //NOT APPLICABLE TO LDAP storage provider always returns empty collection
+    @Override
+    public List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults) {
         return Collections.emptyList();
     }
 

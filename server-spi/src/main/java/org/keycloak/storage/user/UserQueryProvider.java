@@ -18,6 +18,7 @@ package org.keycloak.storage.user;
 
 import org.keycloak.models.GroupModel;
 import org.keycloak.models.RealmModel;
+import org.keycloak.models.RoleModel;
 import org.keycloak.models.UserModel;
 
 import java.util.List;
@@ -116,6 +117,36 @@ public interface UserQueryProvider {
      * @return
      */
     List<UserModel> getGroupMembers(RealmModel realm, GroupModel group, int firstResult, int maxResults);
+
+    /**
+     * Get users that belong to a specific group.  Implementations do not have to search in UserFederatedStorageProvider
+     * as this is done automatically.
+     *
+     * @see org.keycloak.storage.federated.UserFederatedStorageProvider
+     *
+     *
+     *
+     * @param realm
+     * @param group
+     * @return
+     */
+    List<UserModel> getRoleMembers(RealmModel realm, RoleModel role);
+
+    /**
+     * Search for users that have a specific attribute with a specific value.
+     * Implementations do not have to search in UserFederatedStorageProvider
+     * as this is done automatically.
+     *
+     * @see org.keycloak.storage.federated.UserFederatedStorageProvider
+     *
+
+     *
+     * @param attrName
+     * @param attrValue
+     * @param realm
+     * @return
+     */
+    List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults);
 
     /**
      * Get users that belong to a specific group.  Implementations do not have to search in UserFederatedStorageProvider

@@ -19,20 +19,24 @@ package org.keycloak.services.resources.admin;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.NotFoundException;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.keycloak.services.resources.admin.permissions.AdminPermissionEvaluator;
 import org.keycloak.services.resources.admin.permissions.AdminPermissionManagement;
 import org.keycloak.services.resources.admin.permissions.AdminPermissions;
 import org.keycloak.events.admin.OperationType;
 import org.keycloak.events.admin.ResourceType;
 import org.keycloak.models.ClientModel;
+import org.keycloak.models.Constants;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.ModelDuplicateException;
 import org.keycloak.models.RealmModel;
 import org.keycloak.models.RoleContainerModel;
 import org.keycloak.models.RoleModel;
+import org.keycloak.models.UserModel;
 import org.keycloak.models.utils.ModelToRepresentation;
 import org.keycloak.representations.idm.ManagementPermissionReference;
 import org.keycloak.representations.idm.RoleRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.keycloak.services.ErrorResponse;
 
 import javax.ws.rs.BadRequestException;
@@ -66,7 +70,7 @@ public class RoleContainerResource extends RoleResource {
     protected RoleContainerModel roleContainer;
     private AdminEventBuilder adminEvent;
     private UriInfo uriInfo;
-    private KeycloakSession session;
+    private KeycloakSession session;    
 
     public RoleContainerResource(KeycloakSession session, UriInfo uriInfo, RealmModel realm,
                                  AdminPermissionEvaluator auth, RoleContainerModel roleContainer, AdminEventBuilder adminEvent) {
@@ -373,4 +377,36 @@ public class RoleContainerResource extends RoleResource {
         }
     }
 
+    //TODO: change JavaDoc and method details
+    //TODO: Maybe return a scope mapped role? similar to client scoped?
+    //TODO: Insert defaults for first result and maxresults?
+    /**
+     * Return object stating whether role Authoirzation permissions have been initialized or not and a reference
+     *
+     *
+     * @param id
+     * @return initialized manage permissions reference
+     */
+    @Path("{role-name}/users")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @NoCache
+    public  List<UserRepresentation> getUsersInRole(final @PathParam("role-name") String roleName, 
+                                                    @QueryParam("first") Integer firstResult,
+                                                    @QueryParam("max") Integer maxResults) {
+        
+        auth.roles().requireView(roleContainer);
+        firstResult = firstResult != null ? firstResult : 0;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+        
+        RoleModel role = roleContainer.getRole(roleName);
+        List<UserRepresentation> results = new ArrayList<UserRepresentation>();
+        List<UserModel> userModels = session.users().getRoleMembers(realm, role, firstResult, maxResults);
+
+        for (UserModel user : userModels) {
+            results.add(ModelToRepresentation.toRepresentation(session, realm, user));
+        }
+        return results; 
+        
+    }    
 }
