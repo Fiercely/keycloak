@@ -70,7 +70,7 @@ public class RoleContainerResource extends RoleResource {
     protected RoleContainerModel roleContainer;
     private AdminEventBuilder adminEvent;
     private UriInfo uriInfo;
-    private KeycloakSession session;    
+    private KeycloakSession session;
 
     public RoleContainerResource(KeycloakSession session, UriInfo uriInfo, RealmModel realm,
                                  AdminPermissionEvaluator auth, RoleContainerModel roleContainer, AdminEventBuilder adminEvent) {
@@ -377,14 +377,13 @@ public class RoleContainerResource extends RoleResource {
         }
     }
 
-    //TODO: change JavaDoc and method details
-    //TODO: Maybe return a scope mapped role? similar to client scoped?
-    //TODO: Insert defaults for first result and maxresults?
     /**
-     * Return object stating whether role Authoirzation permissions have been initialized or not and a reference
+     * Return List of Users that have the specified role name 
      *
      *
-     * @param id
+     * @param roleName
+     * @param firstResult
+     * @param maxResults
      * @return initialized manage permissions reference
      */
     @Path("{role-name}/users")
@@ -401,7 +400,7 @@ public class RoleContainerResource extends RoleResource {
         
         RoleModel role = roleContainer.getRole(roleName);
         List<UserRepresentation> results = new ArrayList<UserRepresentation>();
-        List<UserModel> userModels = session.users().getRoleMembers(realm, role, firstResult, maxResults);
+        List<UserModel> userModels = session.users().getRoleMembers(realm, roleName, firstResult, maxResults);
 
         for (UserModel user : userModels) {
             results.add(ModelToRepresentation.toRepresentation(session, realm, user));
