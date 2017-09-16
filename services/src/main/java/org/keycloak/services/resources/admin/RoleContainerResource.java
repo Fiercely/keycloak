@@ -400,7 +400,7 @@ public class RoleContainerResource extends RoleResource {
         
         RoleModel role = roleContainer.getRole(roleName);
         List<UserRepresentation> results = new ArrayList<UserRepresentation>();
-        List<UserModel> userModels = session.users().getRoleMembers(realm, roleName, firstResult, maxResults);
+        List<UserModel> userModels = session.users().getRoleMembers(realm, role, firstResult, maxResults);
 
         for (UserModel user : userModels) {
             results.add(ModelToRepresentation.toRepresentation(session, realm, user));
