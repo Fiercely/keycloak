@@ -20,7 +20,7 @@
         var consoleBaseUrl = '${consoleBaseUrl}';
         var resourceUrl = '${resourceUrl}';
         var masterRealm = '${masterRealm}';
-        var resourceVersion = '${resourceVersion}';        
+        var resourceVersion = '${resourceVersion}';
     </script>
 
     <!-- Minimized versions (for those that have one) -->

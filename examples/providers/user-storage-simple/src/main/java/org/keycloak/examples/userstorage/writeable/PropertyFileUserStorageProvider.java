@@ -200,7 +200,7 @@ public class PropertyFileUserStorageProvider implements
 
     @Override
     public List<UserModel> getRoleMembers(RealmModel realm, RoleModel role) {
-        //         // Not supported in federated storage
+        // Not supported in federated storage
         return Collections.EMPTY_LIST;
     }
 

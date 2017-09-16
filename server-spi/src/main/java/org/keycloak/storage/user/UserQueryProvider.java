@@ -119,31 +119,24 @@ public interface UserQueryProvider {
     List<UserModel> getGroupMembers(RealmModel realm, GroupModel group, int firstResult, int maxResults);
 
     /**
-     * Get users that belong to a specific group.  Implementations do not have to search in UserFederatedStorageProvider
-     * as this is done automatically.
-     *
-     * @see org.keycloak.storage.federated.UserFederatedStorageProvider
-     *
+     * Get users that belong to a specific role.
+     * 
      *
      *
      * @param realm
-     * @param group
+     * @param role
      * @return
      */
     List<UserModel> getRoleMembers(RealmModel realm, RoleModel role);
 
     /**
-     * Search for users that have a specific attribute with a specific value.
-     * Implementations do not have to search in UserFederatedStorageProvider
-     * as this is done automatically.
+     * Search for users that have a specific role with a specific roleId.
+     * 
      *
-     * @see org.keycloak.storage.federated.UserFederatedStorageProvider
      *
-
-     *
-     * @param attrName
-     * @param attrValue
-     * @param realm
+     * @param firstResult
+     * @param maxResults
+     * @param role
      * @return
      */
     List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults);
