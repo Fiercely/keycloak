@@ -20,7 +20,7 @@
         var consoleBaseUrl = '${consoleBaseUrl}';
         var resourceUrl = '${resourceUrl}';
         var masterRealm = '${masterRealm}';
-        var resourceVersion = '${resourceVersion}';
+        var resourceVersion = '${resourceVersion}';        
     </script>
 
     <!-- Minimized versions (for those that have one) -->
@@ -66,6 +66,7 @@
     <script src="${resourceUrl}/js/controllers/clients.js" type="text/javascript"></script>
     <script src="${resourceUrl}/js/controllers/users.js" type="text/javascript"></script>
     <script src="${resourceUrl}/js/controllers/groups.js" type="text/javascript"></script>
+    <script src="${resourceUrl}/js/controllers/roles.js" type="text/javascript"></script>
     <script src="${resourceUrl}/js/loaders.js" type="text/javascript"></script>
     <script src="${resourceUrl}/js/services.js" type="text/javascript"></script>
 
