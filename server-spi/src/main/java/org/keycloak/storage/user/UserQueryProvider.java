@@ -127,7 +127,10 @@ public interface UserQueryProvider {
      * @param role
      * @return
      */
-    List<UserModel> getRoleMembers(RealmModel realm, RoleModel role);
+    default List<UserModel> getRoleMembers(RealmModel realm, RoleModel role)
+    {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Search for users that have a specific role with a specific roleId.
@@ -139,7 +142,10 @@ public interface UserQueryProvider {
      * @param role
      * @return
      */
-    List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults);
+    default List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults)
+    {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Get users that belong to a specific group.  Implementations do not have to search in UserFederatedStorageProvider

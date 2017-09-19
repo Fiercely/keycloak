@@ -353,18 +353,7 @@ public class LDAPStorageProvider implements UserStorageProvider,
             }
         }
         return Collections.emptyList();
-    }
-    
-    @Override
-    public List<UserModel> getRoleMembers(RealmModel realm, RoleModel role) {
-        return getRoleMembers(realm, role, 0, Integer.MAX_VALUE - 1);
-    }
-
-    //NOT APPLICABLE TO LDAP storage provider always returns empty collection
-    @Override
-    public List<UserModel> getRoleMembers(RealmModel realm, RoleModel role, int firstResult, int maxResults) {
-        return Collections.emptyList();
-    }
+    }    
 
     public List<UserModel> loadUsersByUsernames(List<String> usernames, RealmModel realm) {
         List<UserModel> result = new ArrayList<>();
