@@ -378,7 +378,7 @@ public class LDAPStorageProvider implements UserStorageProvider,
             }
         }
         return Collections.emptyList();
-    }    
+    }
 
     public List<UserModel> loadUsersByUsernames(List<String> usernames, RealmModel realm) {
         List<UserModel> result = new ArrayList<>();
