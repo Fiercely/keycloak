@@ -3,15 +3,21 @@
  */
 package org.keycloak.testsuite.console.roles;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.keycloak.testsuite.admin.ApiUtil.createUserWithAdminClient;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.jboss.arquillian.graphene.page.Page;
 import org.junit.Before;
 import org.junit.Test;
+import org.keycloak.admin.client.resource.RoleResource;
 import org.keycloak.admin.client.resource.RolesResource;
+import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.keycloak.testsuite.console.page.roles.DefaultRoles;
@@ -47,6 +53,7 @@ public class UsersInRoleTest extends AbstractRolesTest {
     private RealmRoles realmRolesPage;
     
     private RoleRepresentation testRoleRep;
+    private UserRepresentation newUser;
 
 
 
@@ -56,8 +63,12 @@ public class UsersInRoleTest extends AbstractRolesTest {
         testRoleRep = new RoleRepresentation("test-role", "", false);
         rolesResource().create(testRoleRep);
 
-        UserRepresentation newUser = new UserRepresentation();
+        newUser = new UserRepresentation();
         newUser.setUsername("test_user");
+        newUser.setEnabled(true);
+        newUser.setEmail("test-role-member@test-role-member.com");
+        newUser.setRequiredActions(Collections.<String>emptyList());
+        //testRealmResource().users().create(newUser);
         createUserWithAdminClient(testRealmResource(), newUser);
         rolesResource().create(testRoleRep);
         rolesPage.navigateTo();
@@ -75,56 +86,32 @@ public class UsersInRoleTest extends AbstractRolesTest {
         rolesPage.navigateTo();
         rolesPage.tabs().realmRoles();
         realmRolesPage.table().search(testRoleRep.getName());
-        realmRolesPage.table().clickRole(testRoleRep.getName());        
-       
-        rolePage.tabs();
+        realmRolesPage.table().clickRole(testRoleRep.getName());
+        //assert no users in list
+        //Role Page class missing a getUsers() method        
         
-        //users.table().search(newUser.getUsername());
-       // users.table().clickUser(newUser.getUsername());
+        List<UserRepresentation> users = testRealmResource().users().search("test_user", null, null, null, null, null);
+        assertEquals(1, users.size());
+        UserResource user = testRealmResource().users().get(users.get(0).getId());
+        UserRepresentation userRep = user.toRepresentation();
 
-        userPage.tabs().roleMappings();
-        //assertTrue(userRolesPage.form().isAssignedRole(testRoleName));
-    }
-
-    //Added for KEYCLOAK-2035
-    @Test
-    public void roleHasUsersinTab() {
-
-        String defaultRoleName = testRoleRep.getName();
-
-        defaultRolesPage.form().addAvailableRole(defaultRoleName);
-        assertAlertSuccess();
-
-        UserRepresentation newUser = new UserRepresentation();
-        newUser.setUsername("new_user");
-
-        createUserWithAdminClient(testRealmResource(), newUser);
         usersPage.navigateTo();
-        usersPage.table().search(newUser.getUsername());
-        usersPage.table().clickUser(newUser.getUsername());
+        usersPage.table().search(userRep.getUsername());
+        usersPage.table().clickUser(userRep.getUsername());
 
-        userPage.tabs().roleMappings();
-        assertTrue(userRolesPage.form().isAssignedRole(defaultRoleName));
-    }
-    
-    @Test
-    public void removeRoleAndConfirmNoUsers() {
-
-        String defaultRoleName = testRoleRep.getName();
-
-        defaultRolesPage.form().addAvailableRole(defaultRoleName);
-        assertAlertSuccess();
-
-        UserRepresentation newUser = new UserRepresentation();
-        newUser.setUsername("new_user");
-
-        createUserWithAdminClient(testRealmResource(), newUser);
-        usersPage.navigateTo();
-        usersPage.table().search(newUser.getUsername());
-        usersPage.table().clickUser(newUser.getUsername());
-
-        userPage.tabs().roleMappings();
-        assertTrue(userRolesPage.form().isAssignedRole(defaultRoleName));
+        assertFalse(userRolesPage.form().isAssignedRole(testRoleRep.getName()));
+        
+        RoleResource roleResource = testRealmResource().roles().get(testRoleRep.getName());        
+        List<RoleRepresentation> rolesToAdd = new LinkedList<>();
+        rolesToAdd.add(roleResource.toRepresentation());
+        testRealmResource().users().get(userRep.getId()).roles().realmLevel().add(rolesToAdd);        
+        
+        rolesPage.navigateTo();
+        rolesPage.tabs().realmRoles();
+        realmRolesPage.table().search(testRoleRep.getName());
+        realmRolesPage.table().clickRole(testRoleRep.getName());
+        
+        assertTrue(userRolesPage.form().isAssignedRole(testRoleRep.getName()));
     }
 
 

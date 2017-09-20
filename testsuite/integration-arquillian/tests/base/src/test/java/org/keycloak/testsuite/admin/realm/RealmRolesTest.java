@@ -250,10 +250,8 @@ public class RealmRolesTest extends AbstractAdminTest {
 
         roleResource = adminClient.realm(REALM_NAME).roles().get(role.toRepresentation().getName());  
         roleResource.getRoleUserMembers();
-        //roleResource.getRoleUserMembers().stream().forEach((member) -> log.infof("Found user {}", member.getUsername()));
         assertEquals(1, roleResource.getRoleUserMembers().size());
-        
-        //will this mess up cleanup?
+
         adminClient.realm(REALM_NAME).users().delete(userRep.getId());
         roleResource.getRoleUserMembers();
         assertEquals(0, roleResource.getRoleUserMembers().size());
