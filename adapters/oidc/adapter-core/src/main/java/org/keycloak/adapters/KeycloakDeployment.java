@@ -62,7 +62,7 @@ public class KeycloakDeployment {
     protected boolean autodetectBearerOnly;
     protected boolean enableBasicAuth;
     protected boolean publicClient;
-    protected Map<String, Object> resourceCredentials = new HashMap<>();
+    protected Map<String, Object> resourceCredentials = new HashMap<String, Object>();
     protected ClientCredentialsProvider clientAuthenticator;
     protected HttpClient client;
 
@@ -92,7 +92,7 @@ public class KeycloakDeployment {
     // https://tools.ietf.org/html/rfc7636
     protected boolean pkce = false;
     protected boolean ignoreOAuthQueryParameter;
-    
+
     protected Map<String, String> redirectRewriteRules;
 
     protected boolean delegateBearerErrorResponseSending = false;

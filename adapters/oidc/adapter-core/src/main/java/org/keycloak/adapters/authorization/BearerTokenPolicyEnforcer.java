@@ -80,7 +80,7 @@ public class BearerTokenPolicyEnforcer extends AbstractPolicyEnforcer {
         PermissionResource permission = protection.permission();
         PermissionRequest permissionRequest = new PermissionRequest();
         permissionRequest.setResourceSetId(pathConfig.getId());
-        permissionRequest.setScopes(new HashSet<>(methodConfig.getScopes()));
+        permissionRequest.setScopes(new HashSet<String>(methodConfig.getScopes()));
         return permission.forResource(permissionRequest).getTicket();
     }
 }

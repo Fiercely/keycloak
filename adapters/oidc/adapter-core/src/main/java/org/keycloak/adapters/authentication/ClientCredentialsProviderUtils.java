@@ -58,7 +58,7 @@ public class ClientCredentialsProviderUtils {
 
         logger.debugf("Using provider '%s' for authentication of client '%s'", authenticatorId, clientId);
 
-        Map<String, ClientCredentialsProvider> authenticators = new HashMap<>();
+        Map<String, ClientCredentialsProvider> authenticators = new HashMap<String, ClientCredentialsProvider>();
         loadAuthenticators(authenticators, ClientCredentialsProviderUtils.class.getClassLoader());
         loadAuthenticators(authenticators, Thread.currentThread().getContextClassLoader());
 
@@ -100,8 +100,8 @@ public class ClientCredentialsProviderUtils {
      * Don't use directly from your JEE apps to avoid HttpClient linkage errors! Instead use the method {@link #setClientCredentials(KeycloakDeployment, Map, Map)}
      */
     public static void setClientCredentials(KeycloakDeployment deployment, HttpPost post, List<NameValuePair> formparams) {
-        Map<String, String> reqHeaders = new HashMap<>();
-        Map<String, String> reqParams = new HashMap<>();
+        Map<String, String> reqHeaders = new HashMap<String, String>();
+        Map<String, String> reqParams = new HashMap<String, String>();
         setClientCredentials(deployment, reqHeaders, reqParams);
 
         for (Map.Entry<String, String> header : reqHeaders.entrySet()) {

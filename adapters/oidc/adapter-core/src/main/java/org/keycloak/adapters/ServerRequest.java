@@ -71,7 +71,7 @@ public class ServerRequest {
     public static void invokeLogout(KeycloakDeployment deployment, String refreshToken) throws IOException, HttpFailure {
         HttpClient client = deployment.getClient();
         URI uri = deployment.getLogoutUrl().clone().build();
-        List<NameValuePair> formparams = new ArrayList<>();
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 
         formparams.add(new BasicNameValuePair(OAuth2Constants.REFRESH_TOKEN, refreshToken));
         HttpPost post = new HttpPost(uri);
@@ -93,7 +93,7 @@ public class ServerRequest {
     }
 
     public static AccessTokenResponse invokeAccessCodeToToken(KeycloakDeployment deployment, String code, String redirectUri, String sessionId) throws IOException, HttpFailure {
-        List<NameValuePair> formparams = new ArrayList<>();
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
         redirectUri = stripOauthParametersFromRedirect(redirectUri);
         formparams.add(new BasicNameValuePair(OAuth2Constants.GRANT_TYPE, "authorization_code"));
         formparams.add(new BasicNameValuePair(OAuth2Constants.CODE, code));
@@ -142,7 +142,7 @@ public class ServerRequest {
 
     // https://tools.ietf.org/html/rfc7636#section-4
     public static AccessTokenResponse invokeAccessCodeToToken(KeycloakDeployment deployment, String code, String redirectUri, String sessionId, String codeVerifier) throws IOException, HttpFailure {
-        List<NameValuePair> formparams = new ArrayList<>();
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
         redirectUri = stripOauthParametersFromRedirect(redirectUri);
         formparams.add(new BasicNameValuePair(OAuth2Constants.GRANT_TYPE, "authorization_code"));
         formparams.add(new BasicNameValuePair(OAuth2Constants.CODE, code));

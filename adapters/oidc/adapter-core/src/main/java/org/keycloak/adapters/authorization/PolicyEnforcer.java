@@ -163,7 +163,7 @@ public class PolicyEnforcer {
                     resource.setType(pathConfig.getType());
                     resource.setUri(path);
 
-                    HashSet<ScopeRepresentation> scopes = new HashSet<>();
+                    HashSet<ScopeRepresentation> scopes = new HashSet<ScopeRepresentation>();
 
                     for (String scopeName : pathConfig.getScopes()) {
                         ScopeRepresentation scope = new ScopeRepresentation();
@@ -236,7 +236,7 @@ public class PolicyEnforcer {
 
         pathConfig.setPath(uri);
 
-        List<String> scopeNames = new ArrayList<>();
+        List<String> scopeNames = new ArrayList<String>();
 
         for (ScopeRepresentation scope : resourceDescription.getScopes()) {
             scopeNames.add(scope.getName());

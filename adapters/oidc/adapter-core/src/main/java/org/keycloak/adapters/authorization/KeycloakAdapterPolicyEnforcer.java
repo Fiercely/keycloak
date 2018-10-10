@@ -112,7 +112,7 @@ public class KeycloakAdapterPolicyEnforcer extends AbstractPolicyEnforcer {
                 PermissionRequest permissionRequest = new PermissionRequest();
 
                 permissionRequest.setResourceSetId(pathConfig.getId());
-                permissionRequest.setScopes(new HashSet<>(methodConfig.getScopes()));
+                permissionRequest.setScopes(new HashSet<String>(methodConfig.getScopes()));
 
                 PermissionResponse permissionResponse = authzClient.protection().permission().forResource(permissionRequest);
                 AuthorizationRequest authzRequest = new AuthorizationRequest(permissionResponse.getTicket());
@@ -135,7 +135,7 @@ public class KeycloakAdapterPolicyEnforcer extends AbstractPolicyEnforcer {
                     PermissionRequest permissionRequest = new PermissionRequest();
                     permissionRequest.setResourceSetId(pathConfig.getId());
                     permissionRequest.setResourceSetName(pathConfig.getName());
-                    permissionRequest.setScopes(new HashSet<>(pathConfig.getScopes()));
+                    permissionRequest.setScopes(new HashSet<String>(pathConfig.getScopes()));
                     LOGGER.debugf("Sending entitlements request: resource_set_id [%s], resource_set_name [%s], scopes [%s].", permissionRequest.getResourceSetId(), permissionRequest.getResourceSetName(), permissionRequest.getScopes());
                     request.addPermission(permissionRequest);
                     EntitlementResponse authzResponse = authzClient.entitlement(accessToken).get(authzClient.getConfiguration().getResource(), request);
