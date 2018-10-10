@@ -36,10 +36,10 @@ public class StringListMapDeserializer extends JsonDeserializer<Object> {
     public Object deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode jsonNode = jsonParser.readValueAsTree();
         Iterator<Map.Entry<String, JsonNode>> itr = jsonNode.fields();
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
         while (itr.hasNext()) {
             Map.Entry<String, JsonNode> e = itr.next();
-            List<String> values = new LinkedList<>();
+            List<String> values = new LinkedList<String>();
             if (!e.getValue().isArray()) {
                 values.add(e.getValue().asText());
             } else {

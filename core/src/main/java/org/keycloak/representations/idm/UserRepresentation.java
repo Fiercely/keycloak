@@ -157,7 +157,7 @@ public class UserRepresentation {
     }
 
     public UserRepresentation singleAttribute(String name, String value) {
-        if (this.attributes == null) attributes = new HashMap<>();
+        if (this.attributes == null) attributes = new HashMap<String, List<String>>();
         attributes.put(name, (value == null ? new ArrayList<String>() : Arrays.asList(value)));
         return this;
     }

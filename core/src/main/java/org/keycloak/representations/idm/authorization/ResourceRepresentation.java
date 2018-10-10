@@ -94,7 +94,7 @@ public class ResourceRepresentation {
 
     public ResourceRepresentation(String name, String... scopes) {
         this.name = name;
-        this.scopes = new HashSet<>();
+        this.scopes = new HashSet<ScopeRepresentation>();
         for (String s : scopes) {
             ScopeRepresentation rep = new ScopeRepresentation(s);
             this.scopes.add(rep);

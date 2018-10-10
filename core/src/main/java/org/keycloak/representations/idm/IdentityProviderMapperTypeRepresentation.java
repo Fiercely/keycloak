@@ -30,7 +30,7 @@ public class IdentityProviderMapperTypeRepresentation {
     protected String category;
     protected String helpText;
 
-    protected List<ConfigPropertyRepresentation> properties = new LinkedList<>();
+    protected List<ConfigPropertyRepresentation> properties = new LinkedList<ConfigPropertyRepresentation>();
 
     public String getId() {
         return id;

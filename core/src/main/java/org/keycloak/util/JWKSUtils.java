@@ -31,7 +31,7 @@ import java.util.Map;
 public class JWKSUtils {
 
     public static Map<String, PublicKey> getKeysForUse(JSONWebKeySet keySet, JWK.Use requestedUse) {
-        Map<String, PublicKey> result = new HashMap<>();
+        Map<String, PublicKey> result = new HashMap<String, PublicKey>();
 
         for (JWK jwk : keySet.getKeys()) {
             JWKParser parser = JWKParser.create(jwk);

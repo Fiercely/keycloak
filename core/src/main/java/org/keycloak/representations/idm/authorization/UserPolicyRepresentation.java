@@ -41,7 +41,7 @@ public class UserPolicyRepresentation extends AbstractPolicyRepresentation {
 
     public void addUser(String name) {
         if (users == null) {
-            users = new HashSet<>();
+            users = new HashSet<String>();
         }
         users.add(name);
     }

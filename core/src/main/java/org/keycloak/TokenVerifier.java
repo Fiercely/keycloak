@@ -139,7 +139,7 @@ public class TokenVerifier<T extends JsonWebToken> {
     private String expectedTokenType = TokenUtil.TOKEN_TYPE_BEARER;
     private boolean checkTokenType = true;
     private boolean checkRealmUrl = true;
-    private final LinkedList<Predicate<? super T>> checks = new LinkedList<>();
+    private final LinkedList<Predicate<? super T>> checks = new LinkedList<Predicate<? super T>>();
 
     private JWSInput jws;
     private T token;
@@ -248,7 +248,7 @@ public class TokenVerifier<T extends JsonWebToken> {
     /**
      * Sets the key for verification of HMAC-based signature.
      * @param secretKey
-     * @return 
+     * @return
      */
     public TokenVerifier<T> secretKey(SecretKey secretKey) {
         this.secretKey = secretKey;

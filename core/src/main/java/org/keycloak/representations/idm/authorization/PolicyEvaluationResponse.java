@@ -73,7 +73,7 @@ public class PolicyEvaluationResponse {
         private List<ScopeRepresentation> scopes;
         private List<PolicyResultRepresentation> policies;
         private DecisionEffect status;
-        private List<ScopeRepresentation> allowedScopes = new ArrayList<>();
+        private List<ScopeRepresentation> allowedScopes = new ArrayList<ScopeRepresentation>();
 
         public void setResource(final ResourceRepresentation resource) {
             this.resource = resource;
@@ -121,7 +121,7 @@ public class PolicyEvaluationResponse {
         private PolicyRepresentation policy;
         private DecisionEffect status;
         private List<PolicyResultRepresentation> associatedPolicies;
-        private Set<String> scopes = new HashSet<>();
+        private Set<String> scopes = new HashSet<String>();
 
         public PolicyRepresentation getPolicy() {
             return policy;

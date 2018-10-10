@@ -86,7 +86,7 @@ public class GroupRepresentation {
     }
 
     public GroupRepresentation singleAttribute(String name, String value) {
-        if (this.attributes == null) attributes = new HashMap<>();
+        if (this.attributes == null) attributes = new HashMap<String, List<String>>();
         attributes.put(name, Arrays.asList(value));
         return this;
     }

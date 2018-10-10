@@ -34,7 +34,7 @@ public class ProfileInfoRepresentation {
         ProfileInfoRepresentation info = new ProfileInfoRepresentation();
 
         info.name = Profile.getName();
-        info.disabledFeatures = new LinkedList<>();
+        info.disabledFeatures = new LinkedList<String>();
         for (Profile.Feature f : Profile.getDisabledFeatures()) {
             info.disabledFeatures.add(f.name());
         }

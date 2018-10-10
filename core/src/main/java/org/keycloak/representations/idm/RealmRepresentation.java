@@ -115,15 +115,15 @@ public class RealmRepresentation {
     protected String accountTheme;
     protected String adminTheme;
     protected String emailTheme;
-    
+
     protected Boolean eventsEnabled;
     protected Long eventsExpiration;
     protected List<String> eventsListeners;
     protected List<String> enabledEventTypes;
-    
+
     protected Boolean adminEventsEnabled;
     protected Boolean adminEventsDetailsEnabled;
-    
+
     private List<IdentityProviderRepresentation> identityProviders;
     private List<IdentityProviderMapperRepresentation> identityProviderMappers;
     private List<ProtocolMapperRepresentation> protocolMappers;
@@ -450,7 +450,7 @@ public class RealmRepresentation {
     public void setVerifyEmail(Boolean verifyEmail) {
         this.verifyEmail = verifyEmail;
     }
-    
+
     public Boolean isLoginWithEmailAllowed() {
         return loginWithEmailAllowed;
     }
@@ -458,7 +458,7 @@ public class RealmRepresentation {
     public void setLoginWithEmailAllowed(Boolean loginWithEmailAllowed) {
         this.loginWithEmailAllowed = loginWithEmailAllowed;
     }
-    
+
     public Boolean isDuplicateEmailsAllowed() {
         return duplicateEmailsAllowed;
     }
@@ -667,7 +667,7 @@ public class RealmRepresentation {
     public void setEventsListeners(List<String> eventsListeners) {
         this.eventsListeners = eventsListeners;
     }
-    
+
     public List<String> getEnabledEventTypes() {
         return enabledEventTypes;
     }
@@ -709,7 +709,7 @@ public class RealmRepresentation {
     }
 
     public void addUserFederationMapper(UserFederationMapperRepresentation userFederationMapper) {
-        if (userFederationMappers == null) userFederationMappers = new LinkedList<>();
+        if (userFederationMappers == null) userFederationMappers = new LinkedList<UserFederationMapperRepresentation>();
         userFederationMappers.add(userFederationMapper);
     }
 
@@ -722,7 +722,7 @@ public class RealmRepresentation {
     }
 
     public void addIdentityProvider(IdentityProviderRepresentation identityProviderRepresentation) {
-        if (identityProviders == null) identityProviders = new LinkedList<>();
+        if (identityProviders == null) identityProviders = new LinkedList<IdentityProviderRepresentation>();
         identityProviders.add(identityProviderRepresentation);
     }
 
@@ -753,7 +753,7 @@ public class RealmRepresentation {
 
     public void addSupportedLocales(String locale) {
         if(supportedLocales == null){
-            supportedLocales = new HashSet<>();
+            supportedLocales = new HashSet<String>();
         }
         supportedLocales.add(locale);
     }
@@ -779,7 +779,7 @@ public class RealmRepresentation {
     }
 
     public void addIdentityProviderMapper(IdentityProviderMapperRepresentation rep) {
-        if (identityProviderMappers == null) identityProviderMappers = new LinkedList<>();
+        if (identityProviderMappers == null) identityProviderMappers = new LinkedList<IdentityProviderMapperRepresentation>();
         identityProviderMappers.add(rep);
     }
 

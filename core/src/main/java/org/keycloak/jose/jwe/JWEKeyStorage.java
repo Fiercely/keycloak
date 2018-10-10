@@ -32,7 +32,7 @@ public class JWEKeyStorage {
 
     private byte[] cekBytes;
 
-    private Map<KeyUse, Key> decodedCEK = new HashMap<>();
+    private Map<KeyUse, Key> decodedCEK = new HashMap<KeyUse, Key>();
 
     private JWEEncryptionProvider encryptionProvider;
 

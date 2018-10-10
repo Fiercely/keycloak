@@ -32,8 +32,8 @@ public class UserFederationMapperTypeRepresentation {
     protected String helpText;
 
     protected UserFederationMapperSyncConfigRepresentation syncConfig;
-    protected List<ConfigPropertyRepresentation> properties  = new LinkedList<>();
-    protected Map<String, String> defaultConfig = new HashMap<>();
+    protected List<ConfigPropertyRepresentation> properties  = new LinkedList<ConfigPropertyRepresentation>();
+    protected Map<String, String> defaultConfig = new HashMap<String, String>();
 
 
     public String getId() {

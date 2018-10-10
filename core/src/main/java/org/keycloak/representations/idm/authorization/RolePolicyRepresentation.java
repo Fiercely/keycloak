@@ -41,7 +41,7 @@ public class RolePolicyRepresentation extends AbstractPolicyRepresentation {
 
     public void addRole(String name, boolean required) {
         if (roles == null) {
-            roles = new HashSet<>();
+            roles = new HashSet<RoleDefinition>();
         }
         roles.add(new RoleDefinition(name, required));
     }

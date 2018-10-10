@@ -104,7 +104,7 @@ public class UserInfo {
     @JsonProperty("claims_locales")
     protected String claimsLocales;
 
-    protected Map<String, Object> otherClaims = new HashMap<>();
+    protected Map<String, Object> otherClaims = new HashMap<String, Object>();
 
     public String getIssuer() {
         return issuer;

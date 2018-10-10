@@ -29,7 +29,7 @@ import java.util.List;
 public class DockerResponseToken extends JsonWebToken {
 
     @JsonProperty("access")
-    protected List<DockerAccess> accessItems = new ArrayList<>();
+    protected List<DockerAccess> accessItems = new ArrayList<DockerAccess>();
 
     public List<DockerAccess> getAccessItems() {
         return accessItems;

@@ -61,7 +61,7 @@ public class Permission {
 
     public Set<String> getScopes() {
         if (this.scopes == null) {
-            this.scopes = new HashSet<>();
+            this.scopes = new HashSet<String>();
         }
 
         return this.scopes;

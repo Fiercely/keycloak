@@ -34,11 +34,11 @@ class JWERegistry {
 
     // https://tools.ietf.org/html/rfc7518#page-12
     // Registry not pluggable for now. Just supported algorithms included
-    private static final Map<String, JWEEncryptionProvider> ENC_PROVIDERS = new HashMap<>();
+    private static final Map<String, JWEEncryptionProvider> ENC_PROVIDERS = new HashMap<String, JWEEncryptionProvider>();
 
     // https://tools.ietf.org/html/rfc7518#page-22
     // Registry not pluggable for now. Just supported algorithms included
-    private static final Map<String, JWEAlgorithmProvider> ALG_PROVIDERS = new HashMap<>();
+    private static final Map<String, JWEAlgorithmProvider> ALG_PROVIDERS = new HashMap<String, JWEAlgorithmProvider>();
 
 
     static {

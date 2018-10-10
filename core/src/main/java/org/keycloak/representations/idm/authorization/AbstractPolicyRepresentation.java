@@ -94,7 +94,7 @@ public class AbstractPolicyRepresentation {
 
     public void addPolicy(String... id) {
         if (this.policies == null) {
-            this.policies = new HashSet<>();
+            this.policies = new HashSet<String>();
         }
         this.policies.addAll(Arrays.asList(id));
     }
@@ -109,7 +109,7 @@ public class AbstractPolicyRepresentation {
 
     public void addResource(String id) {
         if (this.resources == null) {
-            this.resources = new HashSet<>();
+            this.resources = new HashSet<String>();
         }
         this.resources.add(id);
     }
@@ -124,7 +124,7 @@ public class AbstractPolicyRepresentation {
 
     public void addScope(String... id) {
         if (this.scopes == null) {
-            this.scopes = new HashSet<>();
+            this.scopes = new HashSet<String>();
         }
         this.scopes.addAll(Arrays.asList(id));
     }

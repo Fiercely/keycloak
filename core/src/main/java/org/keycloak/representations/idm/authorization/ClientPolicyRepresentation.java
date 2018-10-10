@@ -42,7 +42,7 @@ public class ClientPolicyRepresentation extends AbstractPolicyRepresentation {
 
     public void addClient(String... id) {
         if (this.clients == null) {
-            this.clients = new HashSet<>();
+            this.clients = new HashSet<String>();
         }
         this.clients.addAll(Arrays.asList(id));
     }

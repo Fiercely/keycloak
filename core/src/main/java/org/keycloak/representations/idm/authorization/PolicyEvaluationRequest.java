@@ -30,11 +30,11 @@ import org.keycloak.representations.idm.authorization.ResourceRepresentation;
  */
 public class PolicyEvaluationRequest {
 
-    private Map<String, Map<String, String>> context = new HashMap<>();
-    private List<ResourceRepresentation> resources = new LinkedList<>();
+    private Map<String, Map<String, String>> context = new HashMap<String, Map<String, String>>();
+    private List<ResourceRepresentation> resources = new LinkedList<ResourceRepresentation>();
     private String clientId;
     private String userId;
-    private List<String> roleIds = new LinkedList<>();
+    private List<String> roleIds = new LinkedList<String>();
     private boolean entitlements;
 
     public Map<String, Map<String, String>> getContext() {
@@ -87,7 +87,7 @@ public class PolicyEvaluationRequest {
 
     public PolicyEvaluationRequest addResource(String name, String... scopes) {
         if (resources == null) {
-            resources = new LinkedList<>();
+            resources = new LinkedList<ResourceRepresentation>();
         }
         resources.add(new ResourceRepresentation(name, scopes));
         return this;

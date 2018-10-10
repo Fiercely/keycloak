@@ -47,7 +47,7 @@ public class PolicyEnforcerConfig {
 
     @JsonProperty("paths")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<PathConfig> paths = new ArrayList<>();
+    private List<PathConfig> paths = new ArrayList<PathConfig>();
 
     @JsonProperty("online-introspection")
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -118,8 +118,8 @@ public class PolicyEnforcerConfig {
         private String name;
         private String type;
         private String path;
-        private List<MethodConfig> methods = new ArrayList<>();
-        private List<String> scopes = new ArrayList<>();
+        private List<MethodConfig> methods = new ArrayList<MethodConfig>();
+        private List<String> scopes = new ArrayList<String>();
         private String id;
 
         @JsonProperty("enforcement-mode")
@@ -218,7 +218,7 @@ public class PolicyEnforcerConfig {
     public static class MethodConfig {
 
         private String method;
-        private List<String> scopes = new ArrayList<>();
+        private List<String> scopes = new ArrayList<String>();
 
         @JsonProperty("scopes-enforcement-mode")
         private ScopeEnforcementMode scopesEnforcementMode = ScopeEnforcementMode.ALL;

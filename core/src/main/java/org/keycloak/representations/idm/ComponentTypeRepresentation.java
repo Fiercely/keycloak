@@ -29,7 +29,7 @@ public class ComponentTypeRepresentation {
     protected String helpText;
     protected List<ConfigPropertyRepresentation> properties;
 
-    protected Map<String, Object> metadata = new HashMap<>();
+    protected Map<String, Object> metadata = new HashMap<String, Object>();
 
 
     public String getId() {
