@@ -105,7 +105,7 @@ public class ConcurrentMultivaluedHashMap<K, V> extends ConcurrentHashMap<K, Lis
    }
 
    protected List<V> createListInstance() {
-      return new CopyOnWriteArrayList<>();
+      return new CopyOnWriteArrayList<V>();
    }
 
 }

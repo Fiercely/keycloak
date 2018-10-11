@@ -40,7 +40,24 @@ public class Retry {
             try {
                 runnable.run();
                 return iteration;
-            } catch (RuntimeException | AssertionError e) {
+            } catch (RuntimeException e) {
+                attemptsCount--;
+                iteration++;
+                if (attemptsCount > 0) {
+                    try {
+                        if (intervalMillis > 0) {
+                            Thread.sleep(intervalMillis);
+                        }
+                    } catch (InterruptedException ie) {
+                        ie.addSuppressed(e);
+                        throw new RuntimeException(ie);
+                    }
+                } else {
+                    throw e;
+                }
+            }
+            catch ( AssertionError e )
+            {
                 attemptsCount--;
                 iteration++;
                 if (attemptsCount > 0) {
@@ -81,7 +98,26 @@ public class Retry {
             try {
                 runnable.run(iteration);
                 return iteration;
-            } catch (RuntimeException | AssertionError e) {
+            }
+            catch (RuntimeException e) {
+                attemptsCount--;
+                iteration++;
+                if (attemptsCount > 0) {
+                    try {
+                        if (intervalBaseMillis > 0) {
+                            int delay = computeBackoffInterval(intervalBaseMillis, iteration);
+                            Thread.sleep(delay);
+                        }
+                    } catch (InterruptedException ie) {
+                        ie.addSuppressed(e);
+                        throw new RuntimeException(ie);
+                    }
+                } else {
+                    throw e;
+                }
+            }
+            catch ( AssertionError e )
+            {
                 attemptsCount--;
                 iteration++;
                 if (attemptsCount > 0) {
@@ -121,7 +157,25 @@ public class Retry {
         while (true) {
             try {
                 return supplier.get(iteration);
-            } catch (RuntimeException | AssertionError e) {
+            }
+            catch (RuntimeException e) {
+                attemptsCount--;
+                iteration++;
+                if (attemptsCount > 0) {
+                    try {
+                        if (intervalMillis > 0) {
+                            Thread.sleep(intervalMillis);
+                        }
+                    } catch (InterruptedException ie) {
+                        ie.addSuppressed(e);
+                        throw new RuntimeException(ie);
+                    }
+                } else {
+                    throw e;
+                }
+            }
+            catch (AssertionError e)
+            {
                 attemptsCount--;
                 iteration++;
                 if (attemptsCount > 0) {

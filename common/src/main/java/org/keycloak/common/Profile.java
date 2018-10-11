@@ -65,7 +65,7 @@ public class Profile {
 
     private final ProfileValue profile;
 
-    private final Set<Feature> disabledFeatures = new HashSet<>();
+    private final Set<Feature> disabledFeatures = new HashSet<Feature>();
 
     private Profile() {
         product = "rh-sso".equals(Version.NAME) ? ProductValue.RHSSO : ProductValue.KEYCLOAK;

@@ -105,7 +105,7 @@ public abstract class KerberosJdkProvider {
 
                 @Override
                 public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-                    Map<String, Object> options = new HashMap<>();
+                    Map<String, Object> options = new HashMap<String, Object>();
                     options.put("storeKey", "true");
                     options.put("doNotPrompt", "true");
                     options.put("isInitiator", "false");
@@ -127,7 +127,7 @@ public abstract class KerberosJdkProvider {
 
                 @Override
                 public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-                    Map<String, Object> options = new HashMap<>();
+                    Map<String, Object> options = new HashMap<String, Object>();
                     options.put("storeKey", "true");
                     options.put("debug", String.valueOf(debug));
                     AppConfigurationEntry kerberosLMConfiguration = new AppConfigurationEntry("com.sun.security.auth.module.Krb5LoginModule", AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, options);
@@ -172,7 +172,7 @@ public abstract class KerberosJdkProvider {
 
                 @Override
                 public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-                    Map<String, Object> options = new HashMap<>();
+                    Map<String, Object> options = new HashMap<String, Object>();
                     options.put("noAddress", "true");
                     options.put("credsType","acceptor");
                     options.put("useKeytab", keytabUrl);
@@ -202,7 +202,7 @@ public abstract class KerberosJdkProvider {
 
                 @Override
                 public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-                    Map<String, Object> options = new HashMap<>();
+                    Map<String, Object> options = new HashMap<String, Object>();
                     options.put("credsType","initiator");
                     options.put("noAddress", "true");
                     options.put("debug", String.valueOf(debug));

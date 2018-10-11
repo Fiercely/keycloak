@@ -130,7 +130,7 @@ public final class OCSPUtils {
             throw new CertPathValidatorException("No OCSP Responder URI in certificate");
         }
 
-        List<URI> uris = new LinkedList<>();
+        List<URI> uris = new LinkedList<URI>();
         for (String value : responderURIs) {
             try {
                 URI responderURI = URI.create(value);
@@ -267,7 +267,37 @@ public final class OCSPUtils {
                 throw new CertPathValidatorException("OCSP check failed", e);
             }
         }
-        catch(CertificateNotYetValidException | CertificateExpiredException | OperatorCreationException | OCSPException | CertificateEncodingException | NoSuchAlgorithmException | NoSuchProviderException e) {
+        catch(CertificateNotYetValidException e ) {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( CertificateExpiredException e)
+        {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( OperatorCreationException e)
+        {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( OCSPException e)
+        {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( CertificateEncodingException e)
+        {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( NoSuchAlgorithmException e)
+        {
+            logger.log(Level.FINE, e.getMessage());
+            throw new CertPathValidatorException(e.getMessage(), e);
+        }
+        catch( NoSuchProviderException e)
+        {
             logger.log(Level.FINE, e.getMessage());
             throw new CertPathValidatorException(e.getMessage(), e);
         }
@@ -304,7 +334,7 @@ public final class OCSPUtils {
 
     private static void verifyResponse(BasicOCSPResp basicOcspResponse, X509Certificate issuerCertificate, X509Certificate responderCertificate, byte[] requestNonce, Date date) throws NoSuchProviderException, NoSuchAlgorithmException, CertificateNotYetValidException, CertificateExpiredException, CertPathValidatorException {
 
-        List<X509CertificateHolder> certs = new ArrayList<>(Arrays.asList(basicOcspResponse.getCerts()));
+        List<X509CertificateHolder> certs = new ArrayList<X509CertificateHolder>(Arrays.asList(basicOcspResponse.getCerts()));
         X509Certificate signingCert = null;
 
         try {
@@ -544,7 +574,7 @@ public final class OCSPUtils {
      */
     private static List<String> getResponderURIs(X509Certificate cert) throws CertificateEncodingException {
 
-        LinkedList<String> responderURIs = new LinkedList<>();
+        LinkedList<String> responderURIs = new LinkedList<String>();
         JcaX509CertificateHolder holder = new JcaX509CertificateHolder(cert);
         Extension aia = holder.getExtension(Extension.authorityInfoAccess);
         if (aia != null) {
