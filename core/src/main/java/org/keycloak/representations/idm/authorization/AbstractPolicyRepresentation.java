@@ -18,9 +18,8 @@ package org.keycloak.representations.idm.authorization;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-
+import com.google.common.base.Objects;
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
@@ -134,11 +133,11 @@ public class AbstractPolicyRepresentation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final AbstractPolicyRepresentation policy = (AbstractPolicyRepresentation) o;
-        return Objects.equals(getId(), policy.getId());
+        return Objects.equal(getId(), policy.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hashCode(getId());
     }
 }

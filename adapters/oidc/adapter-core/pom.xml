@@ -28,6 +28,7 @@
 
     <artifactId>keycloak-adapter-core</artifactId>
     <name>Keycloak Adapter Core</name>
+    <packaging>jar</packaging>
     <description/>
 
     <properties>
@@ -104,6 +105,13 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <fork>true</fork>
+                    <executable>/usr/java/jdk1.6.0_45/bin/javac</executable>
+                    <compilerArguments>
+                        <bootclasspath>/usr/java/jdk1.6.0_45/jre/lib/alt-rt.jar:/usr/java/jdk1.6.0_45/jre/lib/alt-string.jar:/usr/java/jdk1.6.0_45/jre/lib/charsets.jar:/usr/java/jdk1.6.0_45/jre/lib/deploy.jar:/usr/java/jdk1.6.0_45/jre/lib/javaws.jar:/usr/java/jdk1.6.0_45/jre/lib/jce.jar:/usr/java/jdk1.6.0_45/jre/lib/jsse.jar:/usr/java/jdk1.6.0_45/jre/lib/management-agent.jar:/usr/java/jdk1.6.0_45/jre/lib/plugin.jar:/usr/java/jdk1.6.0_45/jre/lib/resources.jar:/usr/java/jdk1.6.0_45/jre/lib/rt.jar:/usr/java/jdk1.6.0_45/jre/lib/ext/localedata.jar</bootclasspath>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </compilerArguments>
                 </configuration>
             </plugin>
 

@@ -248,17 +248,17 @@ public final class OCSPUtils {
 
                     case OCSPResp.INTERNAL_ERROR:
                     case OCSPResp.TRY_LATER:
-                        throw new CertPathValidatorException("Internal error/try later. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1, CertPathValidatorException.BasicReason.UNDETERMINED_REVOCATION_STATUS);
+                        throw new CertPathValidatorException("Internal error/try later. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1);
 
                     case OCSPResp.SIG_REQUIRED:
-                        throw new CertPathValidatorException("Invalid or missing signature. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1, CertPathValidatorException.BasicReason.INVALID_SIGNATURE);
+                        throw new CertPathValidatorException("Invalid or missing signature. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1);
 
                     case OCSPResp.UNAUTHORIZED:
-                        throw new CertPathValidatorException("Unauthorized request. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1, CertPathValidatorException.BasicReason.UNSPECIFIED);
+                        throw new CertPathValidatorException("Unauthorized request. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1);
 
                     case OCSPResp.MALFORMED_REQUEST:
                     default:
-                        throw new CertPathValidatorException("OCSP request is malformed. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1, CertPathValidatorException.BasicReason.UNSPECIFIED);
+                        throw new CertPathValidatorException("OCSP request is malformed. OCSP response error: " + resp.getStatus(), (Throwable) null, (CertPath) null, -1);
                 }
             }
             catch(IOException e) {

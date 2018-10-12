@@ -49,7 +49,6 @@ public class Retry {
                             Thread.sleep(intervalMillis);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {
@@ -66,7 +65,6 @@ public class Retry {
                             Thread.sleep(intervalMillis);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {
@@ -109,7 +107,6 @@ public class Retry {
                             Thread.sleep(delay);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {
@@ -127,7 +124,6 @@ public class Retry {
                             Thread.sleep(delay);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {
@@ -167,7 +163,6 @@ public class Retry {
                             Thread.sleep(intervalMillis);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {
@@ -184,7 +179,6 @@ public class Retry {
                             Thread.sleep(intervalMillis);
                         }
                     } catch (InterruptedException ie) {
-                        ie.addSuppressed(e);
                         throw new RuntimeException(ie);
                     }
                 } else {

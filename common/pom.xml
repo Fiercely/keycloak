@@ -16,8 +16,8 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>keycloak-parent</artifactId>
         <groupId>org.keycloak</groupId>
@@ -37,8 +37,7 @@
         <keycloak.osgi.export>
             org.keycloak.common.*
         </keycloak.osgi.export>
-        <keycloak.osgi.import>
-            *;resolution:=optional
+        <keycloak.osgi.import> *;resolution:=optional
         </keycloak.osgi.import>
     </properties>
     <dependencies>
@@ -55,6 +54,12 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
     </dependencies>
     <build>
         <resources>
@@ -70,6 +75,13 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <fork>true</fork>
+                    <!-- <executable>/usr/java/jdk1.6.0_45/bin/javac</executable> -->
+                    <compilerArguments>
+                        <bootclasspath>/usr/java/jdk1.6.0_45/jre/lib/alt-rt.jar:/usr/java/jdk1.6.0_45/jre/lib/alt-string.jar:/usr/java/jdk1.6.0_45/jre/lib/charsets.jar:/usr/java/jdk1.6.0_45/jre/lib/deploy.jar:/usr/java/jdk1.6.0_45/jre/lib/javaws.jar:/usr/java/jdk1.6.0_45/jre/lib/jce.jar:/usr/java/jdk1.6.0_45/jre/lib/jsse.jar:/usr/java/jdk1.6.0_45/jre/lib/management-agent.jar:/usr/java/jdk1.6.0_45/jre/lib/plugin.jar:/usr/java/jdk1.6.0_45/jre/lib/resources.jar:/usr/java/jdk1.6.0_45/jre/lib/rt.jar:/usr/java/jdk1.6.0_45/jre/lib/ext/localedata.jar</bootclasspath>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </compilerArguments>
                 </configuration>
             </plugin>
 

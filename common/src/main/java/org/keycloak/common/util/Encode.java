@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
-import java.nio.charset.StandardCharsets;
+import org.apache.commons.lang3.CharEncoding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  */
 public class Encode
 {
-   private static final String UTF_8 = StandardCharsets.UTF_8.name();
+   private static final String UTF_8 = CharEncoding.UTF_8;
 
    private static final Pattern PARAM_REPLACEMENT = Pattern.compile("_resteasy_uri_parameter");
 
@@ -504,7 +504,7 @@ public class Encode
       }
       return decoded;
    }
-   
+
    /**
     * decode an encoded map
     *
