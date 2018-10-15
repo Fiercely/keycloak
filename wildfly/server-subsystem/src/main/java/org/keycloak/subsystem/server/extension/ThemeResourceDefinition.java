@@ -41,10 +41,10 @@ import java.util.Map;
 public class ThemeResourceDefinition extends SimpleResourceDefinition {
 
     public static final String TAG_NAME = "theme";
-    
+
     // This is the internal name of the singleton resource
     public static final String RESOURCE_NAME = "defaults";
-    
+
     // NOTE: All attributes must be SimpleAttributeDefinition.  If that needs to
     //       change then refactor starting with lookup() method below.
     static final SimpleAttributeDefinition STATIC_MAX_AGE =
@@ -53,7 +53,7 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
             .setDefaultValue(new ModelNode("2592000"))
             .setRestartAllServices()
             .build();
-    
+
     static final SimpleAttributeDefinition CACHE_THEMES =
         new SimpleAttributeDefinitionBuilder("cacheThemes", ModelType.BOOLEAN, true)
                 .setAllowExpression(true)
@@ -61,7 +61,7 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
                 .setAllowNull(false)
                 .setRestartAllServices()
                 .build();
-    
+
     static final SimpleAttributeDefinition CACHE_TEMPLATES =
         new SimpleAttributeDefinitionBuilder("cacheTemplates", ModelType.BOOLEAN, true)
                 .setAllowExpression(true)
@@ -69,29 +69,29 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
                 .setAllowNull(false)
                 .setRestartAllServices()
                 .build();
-    
+
     static final SimpleAttributeDefinition WELCOME_THEME =
         new SimpleAttributeDefinitionBuilder("welcomeTheme", ModelType.STRING, true)
             .setAllowExpression(true)
             .setRestartAllServices()
             .build();
-    
+
     static final SimpleAttributeDefinition DEFAULT =
         new SimpleAttributeDefinitionBuilder("default", ModelType.STRING, true)
             .setAllowExpression(true)
             .setRestartAllServices()
             .build();
-    
+
     static final SimpleAttributeDefinition DIR =
         new SimpleAttributeDefinitionBuilder("dir", ModelType.STRING, true)
             .setAllowExpression(true)
             .setDefaultValue(new ModelNode("${jboss.home.dir}/themes"))
             .setRestartAllServices()
             .build();
-    
+
     static final StringListAttributeDefinition MODULES = new ModulesListAttributeBuilder().build();
-    
-    static final List<AttributeDefinition> ALL_ATTRIBUTES = new ArrayList<>();
+
+    static final List<AttributeDefinition> ALL_ATTRIBUTES = new ArrayList<AttributeDefinition>();
 
     static {
         ALL_ATTRIBUTES.add(STATIC_MAX_AGE);
@@ -103,15 +103,15 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
         ALL_ATTRIBUTES.add(MODULES);
     }
 
-    private static final Map<String, AttributeDefinition> DEFINITION_LOOKUP = new HashMap<>();
+    private static final Map<String, AttributeDefinition> DEFINITION_LOOKUP = new HashMap<String, AttributeDefinition>();
     static {
         for (AttributeDefinition def : ALL_ATTRIBUTES) {
             DEFINITION_LOOKUP.put(def.getXmlName(), def);
         }
     }
-    
+
     protected static final ReloadRequiredWriteAttributeHandler WRITE_ATTR_HANDLER = new ReloadRequiredWriteAttributeHandler(ALL_ATTRIBUTES);
-    
+
     protected ThemeResourceDefinition() {
         super(PathElement.pathElement(TAG_NAME),
             KeycloakExtension.getResourceDescriptionResolver(TAG_NAME),
@@ -123,7 +123,7 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
     @Override
     public void registerAttributes(ManagementResourceRegistration resourceRegistration) {
         super.registerAttributes(resourceRegistration);
-        
+
         for (AttributeDefinition def : ALL_ATTRIBUTES) {
             resourceRegistration.registerReadWriteAttribute(def, null, WRITE_ATTR_HANDLER);
         }
@@ -132,5 +132,5 @@ public class ThemeResourceDefinition extends SimpleResourceDefinition {
     public static SimpleAttributeDefinition lookup(String name) {
         return (SimpleAttributeDefinition)DEFINITION_LOOKUP.get(name);
     }
-    
+
 }

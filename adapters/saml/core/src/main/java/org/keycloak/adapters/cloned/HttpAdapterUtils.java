@@ -52,14 +52,21 @@ public class HttpAdapterUtils {
             }
 
             MultivaluedHashMap<String, KeyInfo> res;
-            try (InputStream is = entity.getContent()) {
+            InputStream is = entity.getContent();
+            try {
                 res = extractKeysFromSamlDescriptor(is);
+            }
+            finally {
+                if (is != null) is.close();
             }
 
             EntityUtils.consumeQuietly(entity);
 
             return res;
-        } catch (IOException | ParsingException e) {
+        } catch (IOException e) {
+            throw new HttpClientAdapterException("IO error", e);
+        }
+        catch (ParsingException e) {
             throw new HttpClientAdapterException("IO error", e);
         }
     }

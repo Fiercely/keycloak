@@ -63,7 +63,7 @@ public class SamlDescriptorIDPKeysExtractor {
     }
 
     public MultivaluedHashMap<String, KeyInfo> parse(InputStream stream) throws ParsingException {
-        MultivaluedHashMap<String, KeyInfo> res = new MultivaluedHashMap<>();
+        MultivaluedHashMap<String, KeyInfo> res = new MultivaluedHashMap<String, KeyInfo>();
 
         try {
             DocumentBuilder builder = DocumentUtil.getDocumentBuilder();
@@ -80,7 +80,19 @@ public class SamlDescriptorIDPKeysExtractor {
                     res.add(use, ki);
                 }
             }
-        } catch (SAXException | IOException | ParserConfigurationException | MarshalException | XPathExpressionException e) {
+        } catch (SAXException  e) {
+            throw new ParsingException("Error parsing SAML descriptor", e);
+        }
+        catch (IOException e) {
+            throw new ParsingException("Error parsing SAML descriptor", e);
+        }
+        catch (ParserConfigurationException e) {
+            throw new ParsingException("Error parsing SAML descriptor", e);
+        }
+        catch (MarshalException e) {
+            throw new ParsingException("Error parsing SAML descriptor", e);
+        }
+        catch (XPathExpressionException e) {
             throw new ParsingException("Error parsing SAML descriptor", e);
         }
 

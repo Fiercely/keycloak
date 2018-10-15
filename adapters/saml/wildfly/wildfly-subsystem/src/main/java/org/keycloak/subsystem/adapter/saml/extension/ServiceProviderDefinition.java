@@ -87,8 +87,8 @@ public class ServiceProviderDefinition extends SimpleResourceDefinition {
     static final AttributeDefinition[] ELEMENTS = {PRINCIPAL_NAME_MAPPING_POLICY, PRINCIPAL_NAME_MAPPING_ATTRIBUTE_NAME, ROLE_ATTRIBUTES};
 
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
-    static final HashMap<String, AttributeDefinition> ALL_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
+    static final HashMap<String, AttributeDefinition> ALL_MAP = new HashMap<String, AttributeDefinition>();
     static final Collection<AttributeDefinition> ALL_ATTRIBUTES;
 
     static {

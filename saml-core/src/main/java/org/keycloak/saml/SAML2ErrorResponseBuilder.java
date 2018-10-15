@@ -41,7 +41,7 @@ public class SAML2ErrorResponseBuilder implements SamlProtocolExtensionsAwareBui
     protected String status;
     protected String destination;
     protected String issuer;
-    protected final List<NodeGenerator> extensions = new LinkedList<>();
+    protected final List<NodeGenerator> extensions = new LinkedList<NodeGenerator>();
 
     public SAML2ErrorResponseBuilder status(String status) {
         this.status = status;

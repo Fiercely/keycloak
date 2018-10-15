@@ -42,40 +42,40 @@ public class JsonConfigConverterTestCase {
     public void testConvertJsonStandaloneWithModules() throws Exception {
         String json = basicJsonConfig(true);
         List<ModelNode> expResult = expectedOperations(true, false);
-        
+
         List<ModelNode> result = JsonConfigConverter.convertJsonConfig(json, standaloneAddress);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testConvertJsonStandaloneWithoutModules() throws Exception {
         String json = basicJsonConfig(false);
         List<ModelNode> expResult = expectedOperations(false, false);
-        
+
         List<ModelNode> result = JsonConfigConverter.convertJsonConfig(json, standaloneAddress);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testConvertJsonDomainWithModules() throws Exception {
         String json = basicJsonConfig(true);
         List<ModelNode> expResult = expectedOperations(true, true);
-        
+
         List<ModelNode> result = JsonConfigConverter.convertJsonConfig(json, domainAddress);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testConvertJsonDomainWithoutModules() throws Exception {
         String json = basicJsonConfig(false);
         List<ModelNode> expResult = expectedOperations(false, true);
-        
+
         List<ModelNode> result = JsonConfigConverter.convertJsonConfig(json, domainAddress);
         assertEquals(expResult, result);
     }
-    
+
     private String basicJsonConfig(boolean includeModules) {
-        String basicConfig = 
+        String basicConfig =
               "{\n"
             + "    \"providers\": [\n"
             + "        \"classpath:${jboss.home.dir}/providers/*\"\n"
@@ -126,8 +126,8 @@ public class JsonConfigConverterTestCase {
             + "        \"default\": \"default\",\n"
             + "        \"folder\": {\n"
             + "          \"dir\": \"${jboss.home.dir}/themes\"\n";
-            
-        
+
+
         if (includeModules) {
             basicConfig +=
               "        },\n"
@@ -138,7 +138,7 @@ public class JsonConfigConverterTestCase {
             basicConfig +=
               "        }\n";
         }
-        
+
         basicConfig +=
               "     },\n"
             + "\n"
@@ -170,13 +170,13 @@ public class JsonConfigConverterTestCase {
             + "        }\n"
             + "    }\n"
             + "}";
-        
+
         return basicConfig;
     }
-    
+
     private List<ModelNode> expectedOperations(boolean includeModules, boolean isDomain) {
-        List<ModelNode> ops = new ArrayList<>();
-        
+        List<ModelNode> ops = new ArrayList<ModelNode>();
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
@@ -185,7 +185,7 @@ public class JsonConfigConverterTestCase {
             "    \"value\" => \"master\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
@@ -194,7 +194,7 @@ public class JsonConfigConverterTestCase {
             "    \"value\" => 900L\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
@@ -203,7 +203,7 @@ public class JsonConfigConverterTestCase {
             "    \"value\" => [\"classpath:${jboss.home.dir}/providers/*\"]\n" +
             "}"
         ));
-        
+
         if (includeModules) {
             ops.add(ModelNode.fromString(
                 "{\n" +
@@ -238,7 +238,7 @@ public class JsonConfigConverterTestCase {
                 "}"
             ));
         }
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -249,7 +249,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -262,7 +262,7 @@ public class JsonConfigConverterTestCase {
             "    \"enabled\" => true\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -273,7 +273,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -284,7 +284,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -294,7 +294,7 @@ public class JsonConfigConverterTestCase {
             "    ]\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -306,7 +306,7 @@ public class JsonConfigConverterTestCase {
             "    \"enabled\" => true\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -317,7 +317,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -328,7 +328,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -339,7 +339,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"basic\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -349,7 +349,7 @@ public class JsonConfigConverterTestCase {
             "    ]\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -361,7 +361,7 @@ public class JsonConfigConverterTestCase {
             "    \"enabled\" => true\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -371,7 +371,7 @@ public class JsonConfigConverterTestCase {
             "    ]\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -387,7 +387,7 @@ public class JsonConfigConverterTestCase {
             "    \"enabled\" => true\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -397,7 +397,7 @@ public class JsonConfigConverterTestCase {
             "    ]\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -409,7 +409,7 @@ public class JsonConfigConverterTestCase {
             "    \"enabled\" => true\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -420,7 +420,7 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"default\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
@@ -441,7 +441,7 @@ public class JsonConfigConverterTestCase {
                 op.get(ADDRESS).set(domainAddr.toModelNode());
             }
         }
-        
+
         return ops;
     }
 }

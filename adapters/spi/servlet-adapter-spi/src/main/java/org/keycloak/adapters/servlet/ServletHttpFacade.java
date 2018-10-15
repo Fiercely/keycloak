@@ -125,7 +125,7 @@ public class ServletHttpFacade implements HttpFacade {
         @Override
         public List<String> getHeaders(String name) {
             Enumeration<String> values = request.getHeaders(name);
-            List<String> list = new LinkedList<>();
+            List<String> list = new LinkedList<String>();
             while (values.hasMoreElements()) list.add(values.nextElement());
             return list;
         }

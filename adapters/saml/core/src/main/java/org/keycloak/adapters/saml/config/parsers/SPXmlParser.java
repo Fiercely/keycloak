@@ -141,7 +141,7 @@ public class SPXmlParser extends AbstractParser {
     protected void parseRoleMapping(XMLEventReader xmlEventReader, SP sp) throws ParsingException {
         StartElement startElement = StaxParserUtil.getNextStartElement(xmlEventReader);
         StaxParserUtil.validate(startElement, ConfigXmlConstants.ROLE_IDENTIFIERS_ELEMENT);
-        Set<String> roleAttributes = new HashSet<>();
+        Set<String> roleAttributes = new HashSet<String>();
         while (xmlEventReader.hasNext()) {
             XMLEvent xmlEvent = StaxParserUtil.peek(xmlEventReader);
             if (xmlEvent == null)

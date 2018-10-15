@@ -29,10 +29,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version $Revision: 1 $
  */
 public class InMemorySessionIdMapper implements SessionIdMapper {
-    ConcurrentHashMap<String, String> ssoToSession = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, String> sessionToSso = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, Set<String>> principalToSession = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, String> sessionToPrincipal = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, String> ssoToSession = new ConcurrentHashMap<String, String>();
+    ConcurrentHashMap<String, String> sessionToSso = new ConcurrentHashMap<String, String>();
+    ConcurrentHashMap<String, Set<String>> principalToSession = new ConcurrentHashMap<String, Set<String>>();
+    ConcurrentHashMap<String, String> sessionToPrincipal = new ConcurrentHashMap<String, String>();
 
     @Override
     public boolean hasSession(String id) {
@@ -51,7 +51,7 @@ public class InMemorySessionIdMapper implements SessionIdMapper {
     public Set<String> getUserSessions(String principal) {
         Set<String> lookup = principalToSession.get(principal);
         if (lookup == null) return null;
-        Set<String> copy = new HashSet<>();
+        Set<String> copy = new HashSet<String>();
         copy.addAll(lookup);
         return copy;
     }

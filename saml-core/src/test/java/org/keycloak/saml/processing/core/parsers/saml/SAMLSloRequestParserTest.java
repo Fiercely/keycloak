@@ -45,7 +45,8 @@ public class SAMLSloRequestParserTest {
 
     @Test(timeout = 2000)
     public void testSaml20SloResponseWithExtension() throws Exception {
-        try (InputStream is = SAMLSloRequestParserTest.class.getResourceAsStream("KEYCLOAK-4552-saml20-aslo-response-via-extension.xml")) {
+        InputStream is = SAMLSloRequestParserTest.class.getResourceAsStream("KEYCLOAK-4552-saml20-aslo-response-via-extension.xml");
+        try {
             Object parsedObject = parser.parse(is);
             assertThat(parsedObject, instanceOf(LogoutRequestType.class));
 
@@ -65,5 +66,8 @@ public class SAMLSloRequestParserTest {
             assertThat(el.getLocalName(), is("Asynchronous"));
             assertThat(el.getNamespaceURI(), is("urn:oasis:names:tc:SAML:2.0:protocol:ext:async-slo"));
         }
+        finally {
+                if (is != null) is.close();
+            }
     }
 }

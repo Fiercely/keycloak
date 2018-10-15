@@ -272,7 +272,7 @@ public class SAML2Response {
             throw logger.processingError(e);
         }
         ConditionsType conditions = null;
-        List<StatementAbstractType> statements = new LinkedList<>();
+        List<StatementAbstractType> statements = new LinkedList<StatementAbstractType>();
 
         // generate an id for the new assertion.
         String assertionID = IDGenerator.create("ID_");

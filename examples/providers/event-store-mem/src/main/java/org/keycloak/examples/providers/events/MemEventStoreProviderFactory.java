@@ -55,15 +55,15 @@ public class MemEventStoreProviderFactory implements EventStoreProviderFactory {
 
         String excludes = config.get("excludes");
         if (excludes != null) {
-            excludedEvents = new HashSet<>();
+            excludedEvents = new HashSet<EventType>();
             for (String e : excludes.split(",")) {
                 excludedEvents.add(EventType.valueOf(e));
             }
         }
-        
+
         String excludesOperations = config.get("excludesOperations");
         if (excludesOperations != null) {
-            excludedOperations = new HashSet<>();
+            excludedOperations = new HashSet<OperationType>();
             for (String e : excludesOperations.split(",")) {
                 excludedOperations.add(OperationType.valueOf(e));
             }

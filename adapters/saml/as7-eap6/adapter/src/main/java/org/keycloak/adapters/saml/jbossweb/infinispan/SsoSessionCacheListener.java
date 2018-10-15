@@ -40,7 +40,7 @@ public class SsoSessionCacheListener {
 
     private static final Logger LOG = Logger.getLogger(SsoSessionCacheListener.class);
 
-    private final ConcurrentMap<GlobalTransaction, Queue<Event>> map = new ConcurrentHashMap<>();
+    private final ConcurrentMap<GlobalTransaction, Queue<Event>> map = new ConcurrentHashMap<GlobalTransaction, Queue<Event>>();
 
     private final SessionIdMapper idMapper;
 
@@ -106,7 +106,7 @@ public class SsoSessionCacheListener {
                     }
                 });
                 break;
-                
+
             case CACHE_ENTRY_MODIFIED:
                 this.executor.submit(new Runnable() {
                     @Override public void run() {

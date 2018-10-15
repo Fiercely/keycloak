@@ -45,7 +45,7 @@ public class SsoSessionCacheListener {
 
     private static final Logger LOG = Logger.getLogger(SsoSessionCacheListener.class);
 
-    private final ConcurrentMap<String, Queue<Event>> map = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, Queue<Event>> map = new ConcurrentHashMap<String, Queue<Event>>();
 
     private final SessionIdMapper idMapper;
 

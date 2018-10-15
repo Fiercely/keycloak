@@ -37,7 +37,7 @@ public class SAML2AuthnRequestBuilder implements SamlProtocolExtensionsAwareBuil
     private final AuthnRequestType authnRequestType;
     protected String destination;
     protected String issuer;
-    protected final List<NodeGenerator> extensions = new LinkedList<>();
+    protected final List<NodeGenerator> extensions = new LinkedList<NodeGenerator>();
 
     public SAML2AuthnRequestBuilder destination(String destination) {
         this.destination = destination;

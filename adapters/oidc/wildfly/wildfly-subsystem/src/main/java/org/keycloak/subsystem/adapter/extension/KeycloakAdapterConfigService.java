@@ -40,7 +40,7 @@ import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.ADD
 public final class KeycloakAdapterConfigService {
 
     private static final String CREDENTIALS_JSON_NAME = "credentials";
-    
+
     private static final String REDIRECT_REWRITE_RULE_JSON_NAME = "redirect-rewrite-rule";
 
     private static final KeycloakAdapterConfigService INSTANCE = new KeycloakAdapterConfigService();
@@ -53,7 +53,7 @@ public final class KeycloakAdapterConfigService {
 
     // keycloak-secured deployments
     private final Map<String, ModelNode> secureDeployments = new HashMap<String, ModelNode>();
-    private final Set<String> elytronEnabledDeployments = new HashSet<>();
+    private final Set<String> elytronEnabledDeployments = new HashSet<String>();
 
 
     private KeycloakAdapterConfigService() {
@@ -141,7 +141,7 @@ public final class KeycloakAdapterConfigService {
         ModelNode deployment = this.secureDeployments.get(deploymentNameFromOp(operation));
         return deployment.get(CREDENTIALS_JSON_NAME);
     }
-    
+
      public void addRedirectRewriteRule(ModelNode operation, ModelNode model) {
         ModelNode redirectRewritesRules = redirectRewriteRuleFromOp(operation);
         if (!redirectRewritesRules.isDefined()) {
@@ -215,7 +215,7 @@ public final class KeycloakAdapterConfigService {
     private String credentialNameFromOp(ModelNode operation) {
         return valueFromOpAddress(CredentialDefinition.TAG_NAME, operation);
     }
-    
+
     private String redirectRewriteRule(ModelNode operation) {
         return valueFromOpAddress(RedirecRewritetRuleDefinition.TAG_NAME, operation);
     }
@@ -277,7 +277,7 @@ public final class KeycloakAdapterConfigService {
 
     private void setJSONValues(ModelNode json, ModelNode values) {
         synchronized (values) {
-            for (Property prop : new ArrayList<>(values.asPropertyList())) {
+            for (Property prop : new ArrayList<Property>(values.asPropertyList())) {
                 String name = prop.getName();
                 ModelNode value = prop.getValue();
                 if (value.isDefined()) {
@@ -304,7 +304,7 @@ public final class KeycloakAdapterConfigService {
           ? this.secureDeployments.get(deploymentName)
           : new ModelNode();
     }
-    
+
     // KEYCLOAK-3273: prefer module name if available
     private String preferredDeploymentName(DeploymentUnit deploymentUnit) {
         String deploymentName = deploymentUnit.getName();
@@ -312,15 +312,15 @@ public final class KeycloakAdapterConfigService {
         if (warMetaData == null) {
             return deploymentName;
         }
-        
+
         JBossWebMetaData webMetaData = warMetaData.getMergedJBossWebMetaData();
         if (webMetaData == null) {
             return deploymentName;
         }
-        
+
         String moduleName = webMetaData.getModuleName();
         if (moduleName != null) return moduleName + ".war";
-        
+
         return deploymentName;
     }
 }

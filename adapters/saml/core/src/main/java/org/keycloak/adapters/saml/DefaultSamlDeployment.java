@@ -203,7 +203,7 @@ public class DefaultSamlDeployment implements SamlDeployment {
         private final CompositeKeyLocator signatureValidationKeyLocator = new CompositeKeyLocator();
         private SingleSignOnService singleSignOnService;
         private SingleLogoutService singleLogoutService;
-        private final List<PublicKey> signatureValidationKeys = new LinkedList<>();
+        private final List<PublicKey> signatureValidationKeys = new LinkedList<PublicKey>();
         private int minTimeBetweenDescriptorRequests;
         private HttpClient client;
 
@@ -335,7 +335,7 @@ public class DefaultSamlDeployment implements SamlDeployment {
     public boolean isForceAuthentication() {
         return forceAuthentication;
     }
-    
+
    @Override
     public boolean isIsPassive() {
         return isPassive;
@@ -389,7 +389,7 @@ public class DefaultSamlDeployment implements SamlDeployment {
     public void setForceAuthentication(boolean forceAuthentication) {
         this.forceAuthentication = forceAuthentication;
     }
-    
+
     public void setIsPassive(boolean isPassive){
         this.isPassive = isPassive;
     }

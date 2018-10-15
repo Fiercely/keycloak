@@ -516,7 +516,7 @@ public class XMLSignatureUtil {
         DOMValidateContext valContext = new DOMValidateContext(validationKeySelector, signatureNode);
         XMLSignature signature = fac.unmarshalXMLSignature(valContext);
         boolean coreValidity = signature.validate(valContext);
-        
+
         if (! coreValidity) {
             if (logger.isTraceEnabled()) {
                 boolean sv = signature.getSignatureValue().validate(valContext);
@@ -712,7 +712,7 @@ public class XMLSignatureUtil {
         Transform transform1 = fac.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null);
         Transform transform2 = fac.newTransform("http://www.w3.org/2001/10/xml-exc-c14n#", (TransformParameterSpec) null);
 
-        List<Transform> transformList = new ArrayList<>();
+        List<Transform> transformList = new ArrayList<Transform>();
         transformList.add(transform1);
         transformList.add(transform2);
 
@@ -739,7 +739,7 @@ public class XMLSignatureUtil {
     private static KeyInfo createKeyInfo(String keyName, PublicKey publicKey, X509Certificate x509Certificate) throws KeyException {
         KeyInfoFactory keyInfoFactory = fac.getKeyInfoFactory();
 
-        List<Object> items = new LinkedList<>();
+        List<Object> items = new LinkedList<Object>();
 
         if (keyName != null) {
             items.add(keyInfoFactory.newKeyName(keyName));

@@ -35,8 +35,8 @@ public enum SignatureAlgorithm {
     private final String xmlSignatureDigestMethod;
     private final String javaSignatureAlgorithm;
 
-    private static final Map<String, SignatureAlgorithm> signatureMethodMap = new HashMap<>();
-    private static final Map<String, SignatureAlgorithm> signatureDigestMethodMap = new HashMap<>();
+    private static final Map<String, SignatureAlgorithm> signatureMethodMap = new HashMap<String, SignatureAlgorithm>();
+    private static final Map<String, SignatureAlgorithm> signatureDigestMethodMap = new HashMap<String, SignatureAlgorithm>();
 
     static {
         signatureMethodMap.put(RSA_SHA1.getXmlSignatureMethod(), RSA_SHA1);

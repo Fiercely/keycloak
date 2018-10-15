@@ -25,34 +25,37 @@ public class AssertionUtilTest {
 
     @Test
     public void testSaml20Signed() throws Exception {
-        
+
         X509Certificate decodeCertificate = DerUtils.decodeCertificate(new ByteArrayInputStream(Base64.decode(PUBLIC_CERT)));
-        
-        try (InputStream st = AssertionUtilTest.class.getResourceAsStream("saml20-signed-response.xml")) {
+        InputStream st = AssertionUtilTest.class.getResourceAsStream("saml20-signed-response.xml");
+        try {
             Document document = DocumentUtil.getDocument(st);
-            
+
             Element assertion = DocumentUtil.getDirectChildElement(document.getDocumentElement(), "urn:oasis:names:tc:SAML:2.0:assertion", "Assertion");
-            
+
             assertTrue(AssertionUtil.isSignatureValid(assertion, decodeCertificate.getPublicKey()));
-            
+
             // test manipulation of signature
             Element signatureElement = AssertionUtil.getSignature(assertion);
             byte[] validSignature = Base64.decode(signatureElement.getTextContent());
-            
+
             // change the signature value slightly
             byte[] invalidSignature = Arrays.clone(validSignature);
             invalidSignature[0] ^= invalidSignature[0];
             signatureElement.setTextContent(Base64.encodeBytes(invalidSignature));
-            
+
             // check that signature now is invalid
             assertFalse(AssertionUtil.isSignatureValid(document.getDocumentElement(), decodeCertificate.getPublicKey()));
-            
+
             // restore valid signature, but remove Signature element, check that still invalid
             signatureElement.setTextContent(Base64.encodeBytes(validSignature));
 
             assertion.removeChild(signatureElement);
             assertFalse(AssertionUtil.isSignatureValid(document.getDocumentElement(), decodeCertificate.getPublicKey()));
         }
+        finally {
+                if (st != null) st.close();
+            }
     }
 
 }

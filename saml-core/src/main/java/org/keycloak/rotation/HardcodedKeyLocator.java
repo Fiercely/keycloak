@@ -40,7 +40,7 @@ public class HardcodedKeyLocator implements KeyLocator, Iterable<Key> {
         if (keys == null) {
             throw new NullPointerException("keys");
         }
-        this.keys = new LinkedList<>(keys);
+        this.keys = new LinkedList<Key>(keys);
     }
 
     @Override

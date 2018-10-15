@@ -101,7 +101,7 @@ public class KeycloakCliSso {
         config.setResource(client);
         config.setSslRequired("external");
         if (secret != null) {
-            Map<String, Object> creds = new HashMap<>();
+            Map<String, Object> creds = new HashMap<String, Object>();
             creds.put("secret", secret);
             config.setCredentials(creds);
         } else {

@@ -134,7 +134,16 @@ public class SniSSLSocketFactory extends SSLSocketFactory {
 
                 setHostMethod.invoke(socket, hostname);
                 LOG.log(Level.FINEST, "Applied SNI to socket for host {0}", hostname);
-            } catch (PrivilegedActionException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            } catch (PrivilegedActionException e) {
+                LOG.log(Level.WARNING, "Failed to apply SNI to SSLSocket", e);
+            }
+            catch (IllegalAccessException e) {
+                LOG.log(Level.WARNING, "Failed to apply SNI to SSLSocket", e);
+            }
+            catch (IllegalArgumentException e) {
+                LOG.log(Level.WARNING, "Failed to apply SNI to SSLSocket", e);
+            }
+            catch (InvocationTargetException e) {
                 LOG.log(Level.WARNING, "Failed to apply SNI to SSLSocket", e);
             }
         }

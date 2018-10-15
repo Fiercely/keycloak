@@ -157,7 +157,16 @@ public class SAML2Signature {
         String id = samlDocument.getDocumentElement().getAttribute(JBossSAMLConstants.ID.get());
         try {
             sign(samlDocument, id, keyName, keypair, canonicalizationMethodType);
-        } catch (ParserConfigurationException | GeneralSecurityException | MarshalException | XMLSignatureException e) {
+        } catch (ParserConfigurationException e) {
+            throw new ProcessingException(logger.signatureError(e));
+        }
+        catch (GeneralSecurityException e) {
+            throw new ProcessingException(logger.signatureError(e));
+        }
+        catch (MarshalException e) {
+            throw new ProcessingException(logger.signatureError(e));
+        }
+        catch (XMLSignatureException e) {
             throw new ProcessingException(logger.signatureError(e));
         }
     }
@@ -176,7 +185,10 @@ public class SAML2Signature {
         try {
             configureIdAttribute(signedDocument);
             return XMLSignatureUtil.validate(signedDocument, keyLocator);
-        } catch (MarshalException | XMLSignatureException me) {
+        } catch (MarshalException me) {
+            throw new ProcessingException(logger.signatureError(me));
+        }
+        catch (XMLSignatureException me) {
             throw new ProcessingException(logger.signatureError(me));
         }
     }
@@ -219,7 +231,7 @@ public class SAML2Signature {
             configureIdAttribute((Element) nodes.item(i));
         }
     }
-    
+
     public static void configureIdAttribute(Element element) {
         element.setIdAttribute(JBossSAMLConstants.ID.get(), true);
     }

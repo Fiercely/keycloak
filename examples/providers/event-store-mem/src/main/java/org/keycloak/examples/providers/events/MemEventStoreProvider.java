@@ -39,18 +39,18 @@ public class MemEventStoreProvider implements EventStoreProvider {
     private final List<AdminEvent> adminEvents;
     private final Set<OperationType> excludedOperations;
 
-    public MemEventStoreProvider(List<Event> events, Set<EventType> excludedEvents, 
+    public MemEventStoreProvider(List<Event> events, Set<EventType> excludedEvents,
             List<AdminEvent> adminEvents, Set<OperationType> excludedOperations) {
         this.events = events;
         this.excludedEvents = excludedEvents;
-        
+
         this.adminEvents = adminEvents;
         this.excludedOperations = excludedOperations;
     }
 
     @Override
     public EventQuery createQuery() {
-        return new MemEventQuery(new LinkedList<>(events));
+        return new MemEventQuery(new LinkedList<Event>(events));
     }
 
     @Override
@@ -92,7 +92,7 @@ public class MemEventStoreProvider implements EventStoreProvider {
 
     @Override
     public AdminEventQuery createAdminQuery() {
-        return new MemAdminEventQuery(new LinkedList<>(adminEvents));
+        return new MemAdminEventQuery(new LinkedList<AdminEvent>(adminEvents));
     }
 
     @Override

@@ -45,7 +45,8 @@ public class SAMLAttributeQueryParserTest {
 
     @Test(timeout = 2000)
     public void testSaml20AttributeQuery() throws Exception {
-        try (InputStream is = SAMLAttributeQueryParserTest.class.getResourceAsStream("saml20-attributequery.xml")) {
+        InputStream is = SAMLAttributeQueryParserTest.class.getResourceAsStream("saml20-attributequery.xml");
+        try  {
             Object parsedObject = parser.parse(is);
             assertThat(parsedObject, instanceOf(AttributeQueryType.class));
 
@@ -58,11 +59,15 @@ public class SAMLAttributeQueryParserTest {
             NameIDType nameId = (NameIDType) query.getSubject().getSubType().getBaseID();
             assertThat(nameId.getValue(), is("CN=trscavo@uiuc.edu,OU=User,O=NCSA-TEST,C=US"));
         }
+        finally {
+                if (is != null) is.close();
+        }
     }
 
     @Test(timeout = 2000)
     public void testSaml20AttributeQueryWithExtension() throws Exception {
-        try (InputStream is = SAMLAttributeQueryParserTest.class.getResourceAsStream("saml20-attributequery-with-extension.xml")) {
+        InputStream is = SAMLAttributeQueryParserTest.class.getResourceAsStream("saml20-attributequery-with-extension.xml");
+        try  {
             Object parsedObject = parser.parse(is);
             assertThat(parsedObject, instanceOf(AttributeQueryType.class));
 
@@ -82,6 +87,9 @@ public class SAMLAttributeQueryParserTest {
             assertThat(el.getLocalName(), is("KeyInfo"));
             assertThat(el.getNamespaceURI(), is("urn:keycloak:ext:key:1.0"));
             assertThat(el.getAttribute("MessageSigningKeyId"), is("FJ86GcF3jTbNLOco4NvZkUCIUmfYCqoqtOQeMfbhNlE"));
+        }
+        finally {
+                if (is != null) is.close();
         }
     }
 }

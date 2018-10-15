@@ -43,7 +43,7 @@ public class IDFedLSInputResolver implements LSResourceResolver {
     private static final Map<String, String> schemaLocationMap;
 
     static {
-        Map<String, String> schemaLocations = new LinkedHashMap<>();
+        Map<String, String> schemaLocations = new LinkedHashMap<String, String>();
         // XML Schema/DTD
         schemaLocations.put("datatypes.dtd", "schema/w3c/xmlschema/datatypes.dtd");
         schemaLocations.put("XMLSchema.dtd", "schema/w3c/xmlschema/XMLSchema.dtd");

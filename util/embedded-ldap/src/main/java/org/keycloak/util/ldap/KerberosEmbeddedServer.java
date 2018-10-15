@@ -225,7 +225,11 @@ public class KerberosEmbeddedServer extends LDAPEmbeddedServer {
                     hostName.toLowerCase(Locale.ENGLISH)+".")) {
                 hostName = canonicalized;
             }
-        } catch (UnknownHostException | SecurityException e) {
+        } catch (UnknownHostException e) {
+            // not canonicalized or no permission to do so, use old
+        }
+        catch (SecurityException e)
+        {
             // not canonicalized or no permission to do so, use old
         }
         return hostName.toLowerCase(Locale.ENGLISH);

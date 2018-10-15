@@ -42,7 +42,7 @@ public class SAML2LogoutRequestBuilder implements SamlProtocolExtensionsAwareBui
     protected long assertionExpiration;
     protected String destination;
     protected String issuer;
-    protected final List<NodeGenerator> extensions = new LinkedList<>();
+    protected final List<NodeGenerator> extensions = new LinkedList<NodeGenerator>();
 
     public SAML2LogoutRequestBuilder destination(String destination) {
         this.destination = destination;

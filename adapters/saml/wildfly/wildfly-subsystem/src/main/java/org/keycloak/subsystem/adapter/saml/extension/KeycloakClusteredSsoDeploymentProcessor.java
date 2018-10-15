@@ -90,7 +90,7 @@ public class KeycloakClusteredSsoDeploymentProcessor implements DeploymentUnitPr
 
     @Override
     public void undeploy(DeploymentUnit du) {
-        
+
     }
 
     private void addSamlReplicationConfiguration(DeploymentUnit deploymentUnit, DeploymentPhaseContext context) {
@@ -124,7 +124,7 @@ public class KeycloakClusteredSsoDeploymentProcessor implements DeploymentUnitPr
         // Override if they were set in the context parameters
         List<ParamValueMetaData> contextParams = webMetaData.getContextParams();
         if (contextParams == null) {
-            contextParams = new ArrayList<>();
+            contextParams = new ArrayList<ParamValueMetaData>();
         }
         for (ParamValueMetaData contextParam : contextParams) {
             if (Objects.equals(contextParam.getParamName(), SSO_CACHE_CONTAINER_NAME_PARAM_NAME)) {

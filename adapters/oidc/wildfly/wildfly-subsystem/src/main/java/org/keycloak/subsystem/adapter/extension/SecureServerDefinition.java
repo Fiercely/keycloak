@@ -110,7 +110,7 @@ final class SecureServerDefinition extends AbstractAdapterConfigurationDefinitio
 
             KeycloakHttpAuthenticationFactoryService service = new KeycloakHttpAuthenticationFactoryService(factoryName);
             ServiceTarget serviceTarget = context.getServiceTarget();
-            InjectedValue<ExtensibleHttpManagement> injectedValue = new InjectedValue<>();
+            InjectedValue<ExtensibleHttpManagement> injectedValue = new InjectedValue<ExtensibleHttpManagement>();
             serviceTarget.addService(serviceName.append("http-management-context"), createHttpManagementConfigContextService(factoryName, injectedValue))
                     .addDependency(context.getCapabilityServiceName(HTTP_MANAGEMENT_HTTP_EXTENSIBLE_CAPABILITY, ExtensibleHttpManagement.class), ExtensibleHttpManagement.class, injectedValue).setInitialMode(Mode.ACTIVE).install();
             serviceTarget.addService(serviceName, service).setInitialMode(Mode.ACTIVE).install();

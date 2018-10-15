@@ -61,7 +61,7 @@ public class ProxyConfig {
     @JsonProperty("applications")
     protected List<Application> applications = new LinkedList<Application>();
     @JsonProperty("header-names")
-    private Map<String,String> headerNames = new HashMap<>();
+    private Map<String,String> headerNames = new HashMap<String,String>();
 
     public String getBindAddress() {
         return bindAddress;
@@ -218,7 +218,7 @@ public class ProxyConfig {
         public void setErrorPage(String errorPage) {
             this.errorPage = errorPage;
         }
-		
+
         public boolean isProxyAddressForwarding() {
             return proxyAddressForwarding;
         }

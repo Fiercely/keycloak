@@ -71,7 +71,7 @@ public class KeyDefinition extends SimpleResourceDefinition {
     static final SimpleAttributeDefinition[] ELEMENTS = {PRIVATE_KEY_PEM, PUBLIC_KEY_PEM, CERTIFICATE_PEM};
     static final AttributeDefinition[] ALL_ATTRIBUTES = {SIGNING, ENCRYPTION, PRIVATE_KEY_PEM, PUBLIC_KEY_PEM, CERTIFICATE_PEM, KEY_STORE};
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ATTRIBUTES) {
@@ -79,7 +79,7 @@ public class KeyDefinition extends SimpleResourceDefinition {
         }
     }
 
-    static final HashMap<String, SimpleAttributeDefinition> ELEMENT_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ELEMENT_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ELEMENTS) {

@@ -40,7 +40,7 @@ public class KeysXmlParser extends AbstractParser {
     public Object parse(XMLEventReader xmlEventReader) throws ParsingException {
         StartElement startElement = StaxParserUtil.getNextStartElement(xmlEventReader);
         StaxParserUtil.validate(startElement, ConfigXmlConstants.KEYS_ELEMENT);
-        List<Key> keys = new LinkedList<>();
+        List<Key> keys = new LinkedList<Key>();
         while (xmlEventReader.hasNext()) {
             XMLEvent xmlEvent = StaxParserUtil.peek(xmlEventReader);
             if (xmlEvent == null)

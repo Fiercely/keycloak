@@ -45,15 +45,15 @@ public class SysoutEventListenerProviderFactory implements EventListenerProvider
     public void init(Config.Scope config) {
         String[] excludes = config.getArray("excludes");
         if (excludes != null) {
-            excludedEvents = new HashSet<>();
+            excludedEvents = new HashSet<EventType>();
             for (String e : excludes) {
                 excludedEvents.add(EventType.valueOf(e));
             }
         }
-        
+
         String[] excludesOperations = config.getArray("excludesOperations");
         if (excludesOperations != null) {
-            excludedAdminOperations = new HashSet<>();
+            excludedAdminOperations = new HashSet<OperationType>();
             for (String e : excludesOperations) {
                 excludedAdminOperations.add(OperationType.valueOf(e));
             }

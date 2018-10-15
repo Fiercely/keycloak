@@ -68,7 +68,7 @@ public class SAML2LoginResponseBuilder implements SamlProtocolExtensionsAwareBui
     protected String authMethod;
     protected String requestIssuer;
     protected String sessionIndex;
-    protected final List<NodeGenerator> extensions = new LinkedList<>();
+    protected final List<NodeGenerator> extensions = new LinkedList<NodeGenerator>();
     protected boolean includeOneTimeUseCondition;
 
     public SAML2LoginResponseBuilder sessionIndex(String sessionIndex) {

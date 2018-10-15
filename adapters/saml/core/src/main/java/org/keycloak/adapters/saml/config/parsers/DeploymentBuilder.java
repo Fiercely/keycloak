@@ -80,7 +80,7 @@ public class DeploymentBuilder {
         }
         deployment.setRoleAttributeNames(sp.getRoleAttributes());
         if (sp.getRoleAttributes() == null) {
-            Set<String> roles = new HashSet<>();
+            Set<String> roles = new HashSet<String>();
             roles.add("Role");
             deployment.setRoleAttributeNames(roles);
         }

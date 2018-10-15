@@ -38,7 +38,7 @@ public class KeyStorePrivateKeyDefinition {
 
     static final SimpleAttributeDefinition[] ATTRIBUTES = {PRIVATE_KEY_ALIAS, PRIVATE_KEY_PASSWORD};
 
-    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<>();
+    static final HashMap<String, SimpleAttributeDefinition> ATTRIBUTE_MAP = new HashMap<String, SimpleAttributeDefinition>();
 
     static {
         for (SimpleAttributeDefinition def : ATTRIBUTES) {

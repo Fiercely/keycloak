@@ -367,7 +367,10 @@ public class BaseSAML2BindingBuilder<T extends BaseSAML2BindingBuilder> {
                 signature.initSign(signingKeyPair.getPrivate());
                 signature.update(rawQuery.getBytes(GeneralConstants.SAML_CHARSET));
                 sig = signature.sign();
-            } catch (InvalidKeyException | SignatureException e) {
+            } catch (InvalidKeyException e ) {
+                throw new ProcessingException(e);
+            }
+            catch (SignatureException e) {
                 throw new ProcessingException(e);
             }
             String encodedSig = RedirectBindingUtil.base64Encode(sig);

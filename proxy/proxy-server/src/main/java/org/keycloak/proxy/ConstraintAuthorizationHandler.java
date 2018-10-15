@@ -48,7 +48,7 @@ public class ConstraintAuthorizationHandler implements HttpHandler {
         this.errorPage = errorPage;
         this.sendAccessToken = sendAccessToken;
 
-        this.httpHeaderNames = new HashMap<>();
+        this.httpHeaderNames = new HashMap<String, HttpString>();
         this.httpHeaderNames.put(KEYCLOAK_SUBJECT, new HttpString(getOrDefault(headerNames, "keycloak-subject", KEYCLOAK_SUBJECT)));
         this.httpHeaderNames.put(KEYCLOAK_USERNAME, new HttpString(getOrDefault(headerNames, "keycloak-username", KEYCLOAK_USERNAME)));
         this.httpHeaderNames.put(KEYCLOAK_EMAIL, new HttpString(getOrDefault(headerNames, "keycloak-email", KEYCLOAK_EMAIL)));

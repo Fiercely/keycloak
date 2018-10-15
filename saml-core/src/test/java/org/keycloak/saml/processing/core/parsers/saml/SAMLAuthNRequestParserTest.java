@@ -44,7 +44,8 @@ public class SAMLAuthNRequestParserTest {
 
     @Test(timeout = 2000)
     public void testSaml20AttributeQuery() throws Exception {
-        try (InputStream is = SAMLAuthNRequestParserTest.class.getResourceAsStream("saml20-authnrequest.xml")) {
+        InputStream is = SAMLAuthNRequestParserTest.class.getResourceAsStream("saml20-authnrequest.xml");
+        try {
             Object parsedObject = parser.parse(is);
             assertThat(parsedObject, instanceOf(AuthnRequestType.class));
 
@@ -56,11 +57,15 @@ public class SAMLAuthNRequestParserTest {
 
             assertThat(req.getNameIDPolicy().getFormat().toString(), is("urn:oasis:names:tc:SAML:2.0:nameid-format:transient"));
         }
+        finally {
+                if (is != null) is.close();
+        }
     }
 
     @Test(timeout = 2000)
     public void testSaml20AttributeQueryWithExtension() throws Exception {
-        try (InputStream is = SAMLAuthNRequestParserTest.class.getResourceAsStream("saml20-authnrequest-with-extension.xml")) {
+        InputStream is = SAMLAuthNRequestParserTest.class.getResourceAsStream("saml20-authnrequest-with-extension.xml");
+        try {
             Object parsedObject = parser.parse(is);
             assertThat(parsedObject, instanceOf(AuthnRequestType.class));
 
@@ -79,6 +84,9 @@ public class SAMLAuthNRequestParserTest {
             assertThat(el.getLocalName(), is("KeyInfo"));
             assertThat(el.getNamespaceURI(), is("urn:keycloak:ext:key:1.0"));
             assertThat(el.getAttribute("MessageSigningKeyId"), is("FJ86GcF3jTbNLOco4NvZkUCIUmfYCqoqtOQeMfbhNlE"));
+        }
+        finally {
+                if (is != null) is.close();
         }
     }
 }

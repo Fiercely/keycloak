@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class CompositeKeyLocator implements KeyLocator, Iterable<Key> {
 
-    private final List<KeyLocator> keyLocators = new LinkedList<>();
+    private final List<KeyLocator> keyLocators = new LinkedList<KeyLocator>();
 
     @Override
     public Key getKey(String kid) throws KeyManagementException {
@@ -101,7 +101,7 @@ public class CompositeKeyLocator implements KeyLocator, Iterable<Key> {
 
     @SuppressWarnings("unchecked")
     private Iterable<Iterable<Key>> getKeyLocatorIterators() {
-        List<Iterable<Key>> res = new LinkedList<>();
+        List<Iterable<Key>> res = new LinkedList<Iterable<Key>>();
         for (KeyLocator kl : this.keyLocators) {
             if (kl instanceof Iterable) {
                 res.add(((Iterable<Key>) kl));

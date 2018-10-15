@@ -92,10 +92,27 @@ public class ServletSamlAuthMech extends AbstractSamlAuthMech {
 
             LOG.debugv("Initializing sessionIdMapperUpdater class {0}", idMapperSessionUpdaterClass);
             return (SessionIdMapperUpdater) addTokenStoreUpdatersMethod.invoke(null, deploymentInfo, idMapper, previousIdMapperUpdater);
-        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException ex) {
+        } catch (ClassNotFoundException ex) {
             LOG.warnv(ex, "Cannot use sessionIdMapperUpdater class {0}", idMapperSessionUpdaterClass);
             return previousIdMapperUpdater;
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        }
+        catch (NoSuchMethodException ex) {
+            LOG.warnv(ex, "Cannot use sessionIdMapperUpdater class {0}", idMapperSessionUpdaterClass);
+            return previousIdMapperUpdater;
+        }
+        catch (SecurityException ex) {
+            LOG.warnv(ex, "Cannot use sessionIdMapperUpdater class {0}", idMapperSessionUpdaterClass);
+            return previousIdMapperUpdater;
+        }
+         catch (IllegalAccessException ex) {
+            LOG.warnv(ex, "Cannot use {0}.addTokenStoreUpdaters(DeploymentInfo, SessionIdMapper) method", idMapperSessionUpdaterClass);
+            return previousIdMapperUpdater;
+        }
+        catch (IllegalArgumentException ex) {
+            LOG.warnv(ex, "Cannot use {0}.addTokenStoreUpdaters(DeploymentInfo, SessionIdMapper) method", idMapperSessionUpdaterClass);
+            return previousIdMapperUpdater;
+        }
+        catch (InvocationTargetException ex) {
             LOG.warnv(ex, "Cannot use {0}.addTokenStoreUpdaters(DeploymentInfo, SessionIdMapper) method", idMapperSessionUpdaterClass);
             return previousIdMapperUpdater;
         }

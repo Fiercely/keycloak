@@ -47,26 +47,26 @@ public class ExampleServiceImpl implements ExampleService {
     protected RealmModel getRealm() {
         return session.getContext().getRealm();
     }
-    
+
     @Override
     public List<CompanyRepresentation> listCompanies() {
     	List<Company> companyEntities = getEntityManager().createNamedQuery("findByRealm", Company.class)
                 .setParameter("realmId", getRealm().getId())
                 .getResultList();
 
-        List<CompanyRepresentation> result = new LinkedList<>();
+        List<CompanyRepresentation> result = new LinkedList<CompanyRepresentation>();
         for (Company entity : companyEntities) {
             result.add(new CompanyRepresentation(entity));
         }
         return result;
     }
-    
+
     @Override
     public CompanyRepresentation findCompany(String id) {
     	Company entity = getEntityManager().find(Company.class, id);
         return entity==null ? null : new CompanyRepresentation(entity);
     }
-    
+
     @Override
     public CompanyRepresentation addCompany(CompanyRepresentation company) {
         Company entity = new Company();

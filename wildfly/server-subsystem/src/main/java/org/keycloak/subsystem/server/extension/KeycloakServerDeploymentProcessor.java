@@ -69,13 +69,13 @@ public class KeycloakServerDeploymentProcessor implements DeploymentUnitProcesso
         addInfinispanCaches(phaseContext);
         addConfiguration(deploymentUnit, configService);
     }
-    
+
     private void addConfiguration(DeploymentUnit deploymentUnit, KeycloakAdapterConfigService configService) throws DeploymentUnitProcessingException {
         WarMetaData warMetaData = deploymentUnit.getAttachment(WarMetaData.ATTACHMENT_KEY);
         if (warMetaData == null) {
             throw new DeploymentUnitProcessingException("WarMetaData not found for KeycloakServer.");
         }
-        
+
         JBossWebMetaData webMetaData = warMetaData.getMergedJBossWebMetaData();
         if (webMetaData == null) {
             webMetaData = new JBossWebMetaData();
@@ -84,7 +84,7 @@ public class KeycloakServerDeploymentProcessor implements DeploymentUnitProcesso
 
         List<ParamValueMetaData> contextParams = webMetaData.getContextParams();
         if (contextParams == null) {
-            contextParams = new ArrayList<>();
+            contextParams = new ArrayList<ParamValueMetaData>();
         }
 
         ParamValueMetaData param = new ParamValueMetaData();

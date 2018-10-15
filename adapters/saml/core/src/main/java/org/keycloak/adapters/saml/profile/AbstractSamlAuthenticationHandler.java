@@ -410,9 +410,9 @@ public abstract class AbstractSamlAuthenticationHandler implements SamlAuthentic
         NameIDType subjectNameID = subType == null ? null : (NameIDType) subType.getBaseID();
         String principalName = subjectNameID == null ? null : subjectNameID.getValue();
 
-        final Set<String> roles = new HashSet<>();
-        MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<>();
-        MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<>();
+        final Set<String> roles = new HashSet<String>();
+        MultivaluedHashMap<String, String> attributes = new MultivaluedHashMap<String, String>();
+        MultivaluedHashMap<String, String> friendlyAttributes = new MultivaluedHashMap<String, String>();
 
         Set<StatementAbstractType> statements = assertion.getStatements();
         for (StatementAbstractType statement : statements) {
@@ -451,7 +451,7 @@ public abstract class AbstractSamlAuthenticationHandler implements SamlAuthentic
 
         // roles should also be there as regular attributes
         // this mainly required for elytron and its ABAC nature
-        attributes.put(DEFAULT_ROLE_ATTRIBUTE_NAME, new ArrayList<>(roles));
+        attributes.put(DEFAULT_ROLE_ATTRIBUTE_NAME, new ArrayList<String>(roles));
 
         if (deployment.getPrincipalNamePolicy() == SamlDeployment.PrincipalNamePolicy.FROM_ATTRIBUTE) {
             if (deployment.getPrincipalAttributeName() != null) {

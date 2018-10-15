@@ -44,7 +44,7 @@ public class SAML2LogoutResponseBuilder implements SamlProtocolExtensionsAwareBu
     protected String logoutRequestID;
     protected String destination;
     protected String issuer;
-    protected final List<NodeGenerator> extensions = new LinkedList<>();
+    protected final List<NodeGenerator> extensions = new LinkedList<NodeGenerator>();
 
     public SAML2LogoutResponseBuilder logoutRequestID(String logoutRequestID) {
         this.logoutRequestID = logoutRequestID;

@@ -47,8 +47,8 @@ import static org.keycloak.subsystem.server.extension.ThemeResourceDefinition.WE
  */
 public class JsonConfigConverter {
 
-    private static final List<String> NON_SPI_LIST = new ArrayList<>();
-    
+    private static final List<String> NON_SPI_LIST = new ArrayList<String>();
+
     static {
         NON_SPI_LIST.add("providers");
         NON_SPI_LIST.add("admin");
@@ -59,21 +59,21 @@ public class JsonConfigConverter {
     /**
      * Convert keycloak-server.json to DMR operations that write to standalone.xml
      * or domain.xml.
-     * 
+     *
      * @param json The json representation of the config.
      * @param subsysAddress The management model address of the keycloak-server subsystem.
      * @return A list of DMR operations.
      * @throws IOException If the json can not be parsed.
      */
     public static List<ModelNode> convertJsonConfig(String json, PathAddress subsysAddress) throws IOException {
-        List<ModelNode> list = new ArrayList<>();
+        List<ModelNode> list = new ArrayList<ModelNode>();
 
         JsonNode root = new ObjectMapper().readTree(json);
 
         list.add(masterRealmName(root, subsysAddress));
         list.add(scheduledTaskInterval(root, subsysAddress));
         list.add(providers(root, subsysAddress));
-        list.add(theme(root, subsysAddress.append(ThemeResourceDefinition.TAG_NAME, 
+        list.add(theme(root, subsysAddress.append(ThemeResourceDefinition.TAG_NAME,
                                                 ThemeResourceDefinition.RESOURCE_NAME)));
         list.addAll(spis(root, subsysAddress));
 
@@ -84,24 +84,24 @@ public class JsonConfigConverter {
         JsonNode targetNode = getNode(root, "admin", "realm");
         String value = MASTER_REALM_NAME.getDefaultValue().asString();
         if (targetNode != null) value = targetNode.asText(value);
-        
+
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
         op.get("name").set(MASTER_REALM_NAME.getName());
         op.get("value").set(value);
         return op;
     }
-    
+
     private static ModelNode scheduledTaskInterval(JsonNode root, PathAddress addr) {
         JsonNode targetNode = getNode(root, "scheduled", "interval");
         Long value = SCHEDULED_TASK_INTERVAL.getDefaultValue().asLong();
         if (targetNode != null) value = targetNode.asLong(value);
-        
+
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
         op.get("name").set(SCHEDULED_TASK_INTERVAL.getName());
         op.get("value").set(value);
         return op;
     }
-    
+
     private static ModelNode providers(JsonNode root, PathAddress addr) {
         JsonNode targetNode = getNode(root, "providers");
         ModelNode value = PROVIDERS.getDefaultValue();
@@ -111,17 +111,17 @@ public class JsonConfigConverter {
                 value.add(node.asText());
             }
         }
-        
+
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
         op.get("name").set(PROVIDERS.getName());
         op.get("value").set(value);
         return op;
     }
-    
+
     private static ModelNode theme(JsonNode root, PathAddress addr) {
         JsonNode themeNode = getNode(root, "theme");
         ModelNode op = Util.createAddOperation(addr);
-        
+
         JsonNode targetNode = getNode(themeNode, "staticMaxAge");
         Long lValue = STATIC_MAX_AGE.getDefaultValue().asLong();
         if (targetNode != null) lValue = targetNode.asLong(lValue);
@@ -131,31 +131,31 @@ public class JsonConfigConverter {
         Boolean bValue = CACHE_TEMPLATES.getDefaultValue().asBoolean();
         if (targetNode != null) bValue = targetNode.asBoolean(bValue);
         op.get(CACHE_TEMPLATES.getName()).set(bValue);
-        
+
         targetNode = getNode(themeNode, "cacheThemes");
         bValue = CACHE_THEMES.getDefaultValue().asBoolean();
         if (targetNode != null) bValue = targetNode.asBoolean(bValue);
         op.get(CACHE_THEMES.getName()).set(bValue);
-        
+
         targetNode = getNode(themeNode, "folder", "dir");
         String sValue = DIR.getDefaultValue().asString();
         if (targetNode != null) sValue = targetNode.asText(sValue);
         op.get(DIR.getName()).set(sValue);
-        
+
         targetNode = getNode(themeNode, "welcomeTheme");
         if (targetNode != null) op.get(WELCOME_THEME.getName()).set(targetNode.asText());
-        
+
         targetNode = getNode(themeNode, "default");
         if (targetNode != null) op.get(DEFAULT.getName()).set(targetNode.asText());
-        
+
         targetNode = getNode(themeNode, "module", "modules");
         if (targetNode != null && targetNode.isArray()) {
             op.get(MODULES.getName()).set(themeModules(targetNode));
         }
-        
+
         return op;
     }
-    
+
     private static ModelNode themeModules(JsonNode modulesNode) {
         ModelNode modules = new ModelNode();
         for (JsonNode node : modulesNode) {
@@ -163,27 +163,27 @@ public class JsonConfigConverter {
         }
         return modules;
     }
-    
+
     private static Collection<ModelNode> spis(JsonNode root, PathAddress addr) {
-        List<ModelNode> spis = new ArrayList<>();
-        
+        List<ModelNode> spis = new ArrayList<ModelNode>();
+
         Iterator<String> spiIterator = root.fieldNames();
         while (spiIterator.hasNext()) {
             String spiName = spiIterator.next();
             if (NON_SPI_LIST.contains(spiName)) continue;
-            
+
             PathAddress spiAddr = addr.append("spi", spiName);
             spis.addAll(spi(root, spiAddr, spiName));
         }
-        
+
         return spis;
     }
-    
+
     private static List<ModelNode> spi(JsonNode root, PathAddress spiAddr, String spiName) {
-        List<ModelNode> spiAndProviders = new ArrayList<>();
+        List<ModelNode> spiAndProviders = new ArrayList<ModelNode>();
         ModelNode op = Util.createAddOperation(spiAddr);
         spiAndProviders.add(op);
-        
+
         Iterator<String> providerIterator = root.get(spiName).fieldNames();
         while (providerIterator.hasNext()) {
             String providerName = providerIterator.next();
@@ -194,19 +194,19 @@ public class JsonConfigConverter {
                 spiAndProviders.add(spiProvider(getNode(root, spiName, providerName), providerAddr));
             }
         }
-        
+
         return spiAndProviders;
     }
-    
+
     private static ModelNode spiProvider(JsonNode providerNode, PathAddress providerAddr) {
         ModelNode op = Util.createAddOperation(providerAddr);
-        
+
         ModelNode properties = new ModelNode();
-        
+
         Iterator<String> propNames = providerNode.fieldNames();
         while (propNames.hasNext()) {
             String propName = propNames.next();
-            
+
             if ("enabled".equals(propName)) {
                 op.get(ProviderResourceDefinition.ENABLED.getName()).set(providerNode.get(propName).asBoolean());
             } else {
@@ -217,21 +217,21 @@ public class JsonConfigConverter {
                 }
             }
         }
-        
+
         if (properties.isDefined() && !properties.asPropertyList().isEmpty()) {
             op.get("properties").set(properties);
         }
-        
+
         if (!op.hasDefined(ProviderResourceDefinition.ENABLED.getName())) {
             op.get(ProviderResourceDefinition.ENABLED.getName()).set(ProviderResourceDefinition.ENABLED.getDefaultValue());
         }
-        
+
         return op;
     }
-    
+
     private static String makeArrayText(JsonNode arrayNode) {
         StringBuilder builder = new StringBuilder("[");
-        
+
         Iterator<JsonNode> nodes = arrayNode.iterator();
         while (nodes.hasNext()) {
             JsonNode node = nodes.next();
@@ -241,10 +241,10 @@ public class JsonConfigConverter {
             if (nodes.hasNext()) builder.append(",");
         }
         builder.append("]");
-        
+
         return builder.toString();
     }
-    
+
     private static JsonNode getNode(JsonNode root, String... path) {
         if (root == null) {
             return null;

@@ -309,7 +309,13 @@ public class StaxParserUtil {
             } else {
                 return getXMLEventReader(DocumentUtil.getSourceAsStream(source));
             }
-        } catch (ConfigurationException | ProcessingException | XMLStreamException ex) {
+        } catch (ConfigurationException ex) {
+            throw new RuntimeException(ex);
+        }
+        catch (ProcessingException ex) {
+            throw new RuntimeException(ex);
+        }
+        catch (XMLStreamException ex) {
             throw new RuntimeException(ex);
         }
     }

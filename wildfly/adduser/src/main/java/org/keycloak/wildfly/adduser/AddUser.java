@@ -124,7 +124,7 @@ public class AddUser {
         if (addUserFile.isFile()) {
             realms = JsonSerialization.readValue(new FileInputStream(addUserFile), new TypeReference<List<RealmRepresentation>>() {});
         } else {
-            realms = new LinkedList<>();
+            realms = new LinkedList<RealmRepresentation>();
         }
 
         if (realmName == null) {
